@@ -1,0 +1,26 @@
+.container{
+ padding: 70px 0;
+
+}
+
+.row{
+  margin: 0;
+}
+
+p, li{
+  color: blue;
+  font-size: 14px;
+}
+
+header, .navbar{
+  background-color: #353d41;
+}
+
+#nav-container{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#logo{
+  width: 75px;
+}
