@@ -92,9 +92,9 @@ function Login() {
                 <a className='Cadastrar' onClick={() => navigate('/cadastro')}>Cadastre-se</a>
               </p>
             </form>
-          
           </div>
           </div>
+        
        
       </main>
     </>
