@@ -1,13 +1,9 @@
 import React from "react"
-import 'bootstrap/dist/css/bootstrap.min.css'
+import './Texto.css';
 
-function Texto({texto, corTexto}) {
-
-    const estiloTexto = {
-        color: corTexto
-    }
+function Texto({texto}) {
     return (
-    <h1 className="text-center font-weight-bold" style={estiloTexto}>
+    <h1 className='Texto' >
         {texto}
     </h1>
     )

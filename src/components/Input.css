@@ -1,0 +1,10 @@
+.inputUsuario {
+    position: absolute;
+    left: 765px;
+    top: 370px;
+    width: 450px;
+    height: 65px;
+    border-radius: 65px;
+    background-color: #E7E8EA;
+    box-shadow: 0px 4px 4px 0px #00000026;
+  }

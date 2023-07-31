@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AutenticacaoContext } from '../../Contexts/Autenticacao';
 import './Login.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import Botao from '../../components/Botao';
 import Texto from '../../components/Texto';
@@ -11,8 +10,6 @@ function Login() {
   const navigate = useNavigate();
   const { login } = useContext(AutenticacaoContext);
  
-
-
   const [formState, setFormState] = useState({
     nomeUsuario: '',
     senhaLogin: '',
@@ -40,35 +37,32 @@ function Login() {
   return (
     <>
       <main>
-      
-      
           {/*<div className='quadro'> </div>*/}
-          <div className='fundoDesfocado'>
-          <div className='lateral'>
-            <Texto texto='Faça seu Login' corTexto='black' />
+          <body className='fundoDesfocado'>
+          <section className='lateral'>
+            <Texto texto='FAÇA LOGIN' />
+            
             <form method='POST' className='formulario'>
-              <div className='gap-input'>
+              <article className='gap-input'>
               <Input
-                className='form-control'
                 tipo='name'
                 placeholder='Usuario'
                 valor={formState.nomeUsuario}
                 onChange={(evento) => mudaFormState(evento, 'nomeUsuario')}
               />
               <Input
-                className='form-control'
                 tipo='password'
                 placeholder='senha'
                 valor={formState.senhaLogin}
                 onChange={(evento) => mudaFormState(evento, 'senhaLogin')}
               />
-              </div>
+              </article>
               {usuarioEncontrado ? (
                 <h1></h1>
               ) : (
                 <p></p>
               )}
-              <div className='form-group'>
+              <article className='form-group'>
                 <input
                   className='form-check-input'
                   type='checkbox'
@@ -81,7 +75,7 @@ function Login() {
                 <label className='form-check-label' htmlFor='lembrarUsuario'>
                   Lembrar usuário
                 </label>
-              </div>
+              </article>
 
               <a className='spanSenha' onClick={() => navigate('/RecuperaSenha')}>Esqueceu sua senha?</a>
 
@@ -93,8 +87,14 @@ function Login() {
               </p>
             </form>
           
-          </div>
-          </div>
+          </section>
+          <Input
+                tipo='name'
+                placeholder='Usuario'
+                valor={formState.nomeUsuario}
+                onChange={(evento) => mudaFormState(evento, 'nomeUsuario')}
+              />
+          </body>
        
       </main>
     </>
