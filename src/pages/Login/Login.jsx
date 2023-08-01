@@ -38,12 +38,14 @@ function Login() {
     <>
       <main>
           {/*<div className='quadro'> </div>*/}
+          
           <body className='fundoDesfocado'>
+          <div className='imagemLateral'></div>
           <section className='lateral'>
             <Texto texto='FAÇA LOGIN' />
             
             <form method='POST' className='formulario'>
-              <article className='gap-input'>
+            <article className='gap-input'>
               <Input
                 tipo='name'
                 placeholder='Usuario'
@@ -56,6 +58,7 @@ function Login() {
                 valor={formState.senhaLogin}
                 onChange={(evento) => mudaFormState(evento, 'senhaLogin')}
               />
+               
               </article>
               {usuarioEncontrado ? (
                 <h1></h1>
@@ -88,12 +91,6 @@ function Login() {
             </form>
           
           </section>
-          <Input
-                tipo='name'
-                placeholder='Usuario'
-                valor={formState.nomeUsuario}
-                onChange={(evento) => mudaFormState(evento, 'nomeUsuario')}
-              />
           </body>
        
       </main>
