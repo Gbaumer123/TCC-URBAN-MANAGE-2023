@@ -85,7 +85,7 @@ function Login() {
               
               <Botao onClick={verificaLogin} texto="Entrar" corTexto="white" />
               <br></br><br></br>
-              <p className='nao-tem-conta'>Não tem uma conta?
+              <p className='nao-tem-conta'>Não tem uma CONTA?
                 <a className='Cadastrar' onClick={() => navigate('/cadastro')}>Cadastre-se</a>
               </p>
             </form>
