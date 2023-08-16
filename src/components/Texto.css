@@ -7,3 +7,13 @@
     'Liberation Sans', sans-serif;
   letter-spacing: 0.1em;
 }
+
+@media (max-width: 890px) {
+  
+  .Texto{
+    font-size: 30px;
+    margin-top: 30px;
+  }
+  
+  
+}
