@@ -79,7 +79,7 @@ function Login() {
                   Lembrar usuário
                 </label>
               </article>
-<br />
+
               <a className='spanSenha' onClick={() => navigate('/RecuperaSenha')}>Esqueceu sua senha?</a>
 
               
