@@ -36,7 +36,7 @@ main {
   border-radius: 0 8% 8% 0;
 }
 
-.formulario {
+.form {
   width: 80%;
   max-width: 600px;
   height: 80%;
@@ -84,7 +84,7 @@ button:active {
 
 .gap-input {
   display: flex;
-  gap: 15px;
+  gap: 18px;
   flex-direction: column;
 }
 

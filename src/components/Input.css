@@ -1,15 +1,24 @@
-.inputUsuario {
+.input {
   width: 100%;
   height: 7vh;
   border-radius: 30px;
   background-color: #fbf9c0;
   box-shadow: 0px 4px 4px 0px #00000026;
-  padding-left: 40px; /* Adiciona espaço para o ícone */
-  background-image: url('./../assets/icone-usuario-tcc.png'); /* Caminho da imagem do ícone */
-    background-repeat: no-repeat;
-    background-size: 30px; /* Tamanho do ícone */
-    background-position: 5px center; /* Posição do ícone */
+  padding-left: 40px; 
   }
 
+  .usuario{
+    background-image: url('./../assets/icone-usuario.png'); 
+    background-repeat: no-repeat;
+    background-size: 30px; 
+    background-position: 5px center; 
+  }
+
+  .senha{
+    background-image: url('./../assets/icone-cadeado.png'); 
+    background-repeat: no-repeat;
+    background-size: 30px; 
+    background-position: 5px center; 
+  }
   
  

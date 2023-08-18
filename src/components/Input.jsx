@@ -1,11 +1,11 @@
 import React from 'react';
 import './Input.css';
 
-function Input({ tipo, placeholder, valor, onChange }) {
+function Input({ tipo, placeholder, valor, onChange, icone }) {
   return (
     <>
       <input
-        className='inputUsuario' // Altere a classe para 'inputUsuario'
+        className={`input ${icone}`} // Altere a classe para 'inputUsuario'
         type={tipo}
         placeholder={placeholder}
         value={valor}

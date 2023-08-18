@@ -44,14 +44,16 @@ function Login() {
           
           <section className='lateral'>
           <Texto texto='FAÇA LOGIN' />
-            <form method='POST' className='formulario'>
+            <form method='POST' className='form'>
             
               <article className='gap-input'>
                 <Input
+                  
                   tipo='name'
                   placeholder='Usuario'
                   valor={formState.nomeUsuario}
                   onChange={(evento) => mudaFormState(evento, 'nomeUsuario')}
+                  icone='usuario'
 
                 />
 
@@ -60,6 +62,7 @@ function Login() {
                   placeholder='Senha'
                   valor={formState.senhaLogin}
                   onChange={(evento) => mudaFormState(evento, 'senhaLogin')}
+                  icone='senha'
                 />
               </article>
               
