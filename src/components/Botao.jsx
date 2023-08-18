@@ -1,7 +1,7 @@
 import React from "react"
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-function Botao({onClick,texto, corTexto}) {
+function Botao({onClick,texto}) {
 
     const estiloBotao = {
         color: '#FFED02',

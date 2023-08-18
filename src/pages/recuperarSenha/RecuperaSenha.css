@@ -36,7 +36,25 @@
     border-radius: 0 8% 8% 0;
   }
 
+  .formalt {
+    display: flex;
+    width: 80%;
+    max-width: 600px;
+    height: 80%;
+    max-height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
   
+.gap-input-alt {
+  display: flex;
+  gap: 18px;
+  flex-direction: column;
+}
 
   @media (max-width: 890px) {
     .fundoDesfocado {
@@ -59,8 +77,7 @@
       height: 100%;
       background-size: cover;
       border-radius: 0;
-  
-  
     }
-  
+
+   
   }

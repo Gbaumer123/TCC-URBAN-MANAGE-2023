@@ -1,0 +1,18 @@
+.Textomenor {
+    color: #000;
+    font-size: 2.5vw;
+    font-size: 2.5vh;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 890px) {
+   .Textomenor{
+
+    font-size: 2vw;
+    font-size: 2vh;
+ 
+   }
+  
+  }

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Botao from '../../components/Botao';
 import Texto from '../../components/Texto';
 import Input from '../../components/Input';
+import Textomenor from '../../components/Textomenor';
 
 
 
@@ -75,21 +76,18 @@ function Login() {
                 <input
                   className='form-check-input'
                   type='checkbox'
-                  id='lembrarUsuario'
                   checked={formState.lembrarUsuario}
                   onChange={(evento) =>
-                    mudaFormState(evento, 'lembrarUsuario')
+                  mudaFormState(evento, 'lembrarUsuario')
                   }
                 />
-                <label className='lembraUsuario'>
-                  Lembrar usuário
-                </label>
+                <Textomenor texto='Lembrar usuário' />
              
                 <article className='gap-input'>
               <a className='spanSenha' onClick={() => navigate('/RecuperaSenha')}>Esqueceu sua senha?</a>
 
 
-              <Botao onClick={verificaLogin} texto="ENTRAR" corTexto="#FFED02" />
+              <Botao onClick={verificaLogin} texto="ENTRAR"/>
               
               <label className='nao-tem-conta'>Não tem uma conta?
                 <a className='Cadastrar' onClick={() => navigate('/cadastro')}>Cadastre-se</a>

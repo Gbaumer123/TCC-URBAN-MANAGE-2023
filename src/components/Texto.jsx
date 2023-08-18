@@ -3,7 +3,7 @@ import './Texto.css';
 
 function Texto({texto}) {
     return (
-    <h1 className='Texto' >
+    <h1 className='Textomaior' >
         {texto}
     </h1>
     )

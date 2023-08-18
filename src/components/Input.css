@@ -10,14 +10,20 @@
   .usuario{
     background-image: url('./../assets/icone-usuario.png'); 
     background-repeat: no-repeat;
-    background-size: 30px; 
+    background-size: 28px; 
     background-position: 5px center; 
   }
 
   .senha{
     background-image: url('./../assets/icone-cadeado.png'); 
     background-repeat: no-repeat;
-    background-size: 30px; 
+    background-size: 28px; 
+    background-position: 5px center; 
+  }
+  .email{
+    background-image: url('./../assets/icone-email.png'); 
+    background-repeat: no-repeat;
+    background-size: 28px; 
     background-position: 5px center; 
   }
   
