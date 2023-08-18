@@ -1,97 +1,98 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
+
 main {
-    width: 100%;
-    height: 100%;
-    background-color: #999999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-  .fundoDesfocado {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-    height: 90%;
-    background-color: #999999;
-    border-radius: 0%;
-
-  }
-/*.quadro {
-    width: 80%;
-    max-width: 600px;
-    height: 60%;
-    max-height: 600px;
-    background-color: white;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 20px;
-    text-align: center;
-  
-  }*/
-  .lateral {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 50%;
-    background-color: #ffffff;
-    height: 100%;
-    border-radius: 0 8% 8% 0;
-    
-  }
-
-  .formulario {
-    text-align: center;
-    
-  }
-
-  
-button:active{
-    transform: scale(1.0);
-}
-.spanSenha{
-    color: #5EB8F4;
-    cursor: pointer;
-    margin-right: 40%;
-    font-size: 15px;
-    text-decoration: solid;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-  }
-    .Cadastrar{
-    color: #5EB8F4;
-    cursor: pointer;
-    text-decoration: solid;
-  }
-
-.nao-tem-conta{
-    color:#090909;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-.gap-input{
+  width: 100%;
+  height: 100%;
+  background-color: #999999;
   display: flex;
-  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.fundoDesfocado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+  background-color: #999999;
+  border-radius: 0%;
+}
+
+.lateral {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
+  width: 50%;
+  background-color: #E7E8EA;
+  height: 100%;
+  border-radius: 0 8% 8% 0;
+}
+
+.formulario {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+
+button:active {
+  transform: scale(1.0);
+}
+
+.spanSenha {
+  color: #5EB8F4;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+}
+
+.lembraUsuario {
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 2.5px;
+}
+
+.nao-tem-conta {
+  color: #090909;
+  font-size: 13px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.Cadastrar {
+  color: #5EB8F4;
+  cursor: pointer;
+}
+
+
+.gap-input {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  
+
 }
 
 .imagemLateral {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%; 
-  height: 100%; 
-  background-image: url('./logoTcc.png'); 
+  width: 50%;
+  height: 100%;
+  background-image: url('./logoTcc.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -106,22 +107,22 @@ button:active{
 
     flex-direction: column;
   }
+
   .lateral {
 
     width: 100%;
-
     border-radius: 0;
-    
+
   }
+
   .imagemLateral {
 
-    width: 100%; 
-    height: 100%; 
+    width: 100%;
+    height: 100%;
     background-size: cover;
     border-radius: 0;
 
 
   }
-  
-  
+
 }

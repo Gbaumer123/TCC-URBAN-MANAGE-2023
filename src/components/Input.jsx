@@ -1,5 +1,5 @@
 import React from 'react';
-import './Input.css'; // Importe o arquivo CSS local que contém a classe .inputUsuario
+import './Input.css';
 
 function Input({ tipo, placeholder, valor, onChange }) {
   return (
@@ -11,7 +11,8 @@ function Input({ tipo, placeholder, valor, onChange }) {
         value={valor}
         onChange={(event) => {
           onChange(event);
-        }}
+        }
+        }
       />
     </>
   );
