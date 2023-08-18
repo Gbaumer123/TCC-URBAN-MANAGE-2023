@@ -3,7 +3,20 @@ import './RecuperaSenha.css';
 
 const RecuperaSenha = () => {
     return (
-        <h1> Recuperar senha</h1>
+        <main>
+        <body className='fundoDesfocado'>
+          <div className='imagemLateral'></div>
+          
+          <section className='lateral'>
+          
+            <form method='POST' className='formulario'>
+         
+            </form>
+
+          </section>
+        </body>
+
+      </main>
     )
 };
 
