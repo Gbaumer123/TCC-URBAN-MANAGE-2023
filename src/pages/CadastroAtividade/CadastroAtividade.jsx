@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Cabecalho from "../../components/Header/Cabecalho";
 import Botao from "../../components/Botao";
 import Input from "../../components/Input";
-import Texto from '../../components/Texto';
+import Textomaior from '../../components/Textomaior';
 
 function CadastroAtividade() {
 
@@ -80,7 +80,7 @@ function CadastroAtividade() {
             <Cabecalho />
             <section className="d-flex justify-content-center align-items-center h-100">
                 <div className="form">
-                    <Texto texto="Adicione uma nova atividade" corTexto="black" />
+                    <Textomaior texto="Adicione uma nova atividade" corTexto="black" />
                     <br />
                     <form method="POST" className="text-center" onSubmit={CriaAtividade}>
                         <Input

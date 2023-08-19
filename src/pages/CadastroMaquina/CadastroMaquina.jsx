@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Cabecalho from "../../components/Header/Cabecalho";
 import Botao from "../../components/Botao";
 import Input from "../../components/Input";
-import Texto from '../../components/Texto';
+import Textomaior from '../../components/Textomaior';
 
 const CadastroMaquina = () => {
     const [formState, setFormState] = useState(
@@ -60,7 +60,7 @@ const CadastroMaquina = () => {
             <Cabecalho />
             <section className='d-flex justify-content-center align-items-center h-100'>
                 <div className='form'>
-                    <Texto texto="Adicione um nova máquina" corTexto="black" />
+                    <Textomaior texto="Adicione um nova máquina" corTexto="black" />
                     <form
                         method="POST"
                         className="text-center"
