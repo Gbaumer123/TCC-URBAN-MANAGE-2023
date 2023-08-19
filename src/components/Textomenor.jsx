@@ -3,7 +3,9 @@ import './Textomenor.css';
 
 function Textomenor({texto}) {
     return (
-    <label className='Textomenor' >
+    <label 
+    className={'Textomenor'} 
+    >
         {texto}
     </label>
     )

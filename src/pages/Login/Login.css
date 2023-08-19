@@ -43,7 +43,7 @@ main {
   max-height: 600px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 13%;
+  margin-top: 18%;
 }
 
 
@@ -55,7 +55,7 @@ button:active {
   color: #5EB8F4;
   cursor: pointer;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -63,7 +63,7 @@ button:active {
 
 .nao-tem-conta {
   color: #090909;
-  font-size: 13px;
+  font-size: 18px;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
 }

@@ -3,7 +3,7 @@ import { AutenticacaoContext } from '../../Contexts/Autenticacao';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import Botao from '../../components/Botao';
-import Texto from '../../components/Texto';
+import Textomaior from '../../components/Textomaior';
 import Input from '../../components/Input';
 import Textomenor from '../../components/Textomenor';
 
@@ -44,7 +44,7 @@ function Login() {
           <div className='imagemLateral'></div>
           
           <section className='lateral'>
-          <Texto texto='FAÇA LOGIN' />
+          <Textomaior texto='FAÇA LOGIN' />
             <form method='POST' className='form'>
             
               <article className='gap-input'>

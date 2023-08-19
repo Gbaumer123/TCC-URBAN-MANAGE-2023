@@ -1,7 +1,7 @@
 import React from "react"
-import './Texto.css';
+import './Textomaior.css';
 
-function Texto({texto}) {
+function Textomaior({texto}) {
     return (
     <h1 className='Textomaior' >
         {texto}
@@ -9,5 +9,5 @@ function Texto({texto}) {
     )
 }
 
-export default Texto
+export default Textomaior
 

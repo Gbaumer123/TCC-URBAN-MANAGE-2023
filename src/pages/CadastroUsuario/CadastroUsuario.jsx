@@ -4,7 +4,7 @@ import "./CadastroUsuario.css";
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Botao from '../../components/Botao';
-import Texto from '../../components/Texto';
+import Textomaior from '../../components/Textomaior';
 import Input from '../../components/Input';
 
 
@@ -68,7 +68,7 @@ function CadastroUsuario() {
       <main>
         <div className="container">
           <div className="quadro">
-            <Texto texto="Crie sua Conta" corTexto="black" />
+            <Textomaior texto="Crie sua Conta" corTexto="black" />
             <form
               method="POST"
               className="formulario"
