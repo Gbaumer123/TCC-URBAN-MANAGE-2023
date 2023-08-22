@@ -30,7 +30,7 @@ const RecuperaSenha = () => {
       <body className='fundoDesfocado'>
         <div className='imagemLateral'></div>
         <section className='lateral'>
-          <Textomaior texto={'Encontre sua conta'}></Textomaior>
+          <Textomaior texto={'Recupere sua conta'}></Textomaior>
           <form method='POST' className='formalt'>
           <article className='gap-input-alt'>
           <Textomenor texto='Informe o e-mail associado à sua conta para alterar sua senha.'  />

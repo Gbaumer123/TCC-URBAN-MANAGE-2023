@@ -2,10 +2,10 @@ import React, { useState, useContext } from 'react'
 import { AutenticacaoContext } from '../../Contexts/Autenticacao';
 import "./CadastroUsuario.css";
 import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css'
 import Botao from '../../components/Botao';
 import Textomaior from '../../components/Textomaior';
 import Input from '../../components/Input';
+import Textomenor from '../../components/Textomenor';
 
 
 
@@ -66,55 +66,66 @@ function CadastroUsuario() {
   return (
     <>
       <main>
-        <div className="container">
-          <div className="quadro">
-            <Textomaior texto="Crie sua Conta" corTexto="black" />
-            <form
-              method="POST"
-              className="formulario"
-              onSubmit={verificaRegister}
-            >
+        <body className='fundoDesfocado'>
+          <div className='imagemLateral'></div>
+
+
+          <section className='lateral'>
+            <Textomaior texto="Crie sua Conta" />
+            <form method="POST" className="form-cad">
+
+
+              <Textomenor texto='Nome do usuário:' />
               <Input
                 tipo="name"
-                placeholder="Nome"
+                placeholder="Usuário"
                 valor={formState.nome}
                 onChange={(evento) => mudaFormState(evento, "nome")}
+                icone='usuario'
               />
+              <Textomenor texto='Email:' />
               <Input
                 tipo="email"
                 placeholder="Email"
                 valor={formState.email}
                 onChange={(evento) => mudaFormState(evento, "email")}
+                icone='email'
               />
+              <Textomenor texto='Senha:' />
               <Input
                 tipo="password"
                 placeholder="senha"
                 valor={formState.senha}
                 onChange={(evento) => mudaFormState(evento, "senha")}
+                icone='senha'
               />
+              <Textomenor texto='Confirme sua senha:' />
               <Input
                 tipo="password"
                 placeholder="Confirme sua senha"
                 valor={formState.senha2}
                 onChange={(evento) => mudaFormState(evento, "senha2")}
+                icone='senha'
               />
-              <select class="form-control" aria-label=".form-select-lg example" value={formState.campo}
-                onChange={(evento) => mudaFormState(evento, "campo")}>
-                <option selected>Cargo</option>
-                <option value="1">Secretário</option>
-                <option value="2">Engenheiro</option>
-                <option value="3">Prefeito</option>
-              </select>
-              <br></br>
-              <Botao onClick={verificaRegister} texto="cadastrar" corTexto="white" />
 
+              <Textomenor texto='Cargo:' />
+              <article className='gap-input-cad'>
+                <select class="select" value={formState.campo}
+                  onChange={(evento) => mudaFormState(evento, "campo")}>
+                  <option selected >Cargo</option>
+                  <option value="1">Secretário</option>
+                  <option value="2">Engenheiro</option>
+                  <option value="3">Prefeito</option>
+                </select>
 
-              <button className="btn btn-link" onClick={logout}> Já possui conta? </button>
+                <Botao onClick={verificaRegister} texto="CADASTRAR" />
 
-
+                <a className="japossuiconta" onClick={logout}> Já possui conta? </a>
+              </article>
             </form>
-          </div>
-        </div>
+
+          </section>
+        </body>
       </main>
     </>
   );
