@@ -6,7 +6,7 @@ import Botao from '../../components/Botao';
 import Textomaior from '../../components/Textomaior';
 import Input from '../../components/Input';
 import Textomenor from '../../components/Textomenor';
-import mysql from 'mysql2';
+
 
 
 function CadastroUsuario() {
@@ -52,34 +52,14 @@ function CadastroUsuario() {
       return;
     }
 
-    // Configuração da conexão com o MySQL
-    const connection = mysql.createConnection({
-      host: ' 172.16.5.32',
-      user: 'root',
-      password: 'root1234',
-      database: 'usuarios',
-    });
-
-    // Conecte-se ao banco de dados
-    connection.connect();
-
-    // Insira os dados no banco de dados
-    connection.query(
-      'INSERT INTO usuarios (nome, email, senha, campo) VALUES (?, ?, ?, ?)',
-      [formState.nome, formState.email, formState.senha, formState.campo],
-      (err, results) => {
-        if (err) {
-          console.error('Erro ao inserir dados no banco de dados:', err);
-        } else {
-          console.log('Dados inseridos com sucesso no banco de dados');
-    
-          navigate('/home'); 
-        }
-        
-        // Feche a conexão com o banco de dados
-        connection.end();
-      }
-    );
+    CadastroUsuario(formState);
+    setFormState({
+      nome: "",
+      email: "",
+      senha: "",
+      senha2: "",
+      campo: "",
+    })
   };
 
 
