@@ -1,21 +1,21 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { createContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
-import { useNavigate } from "react-router-dom";
-
-//cria uma area global para armazenar informações
-//Pode ser acessado em todo o sistema
 
 export const AutenticacaoContext = createContext();
+
+
 
 export const AutenticacaoProvider = ({ children }) => {
     const navigate = useNavigate();
 
-    const [usuario, setUsuario] = useState(null);
-    const [carregando, setCarregando] = useState(true);
-    const [usuariosCadastrados, setUsuariosCadastrados] = useState([]);
+    /*//const [usuario, setUsuario] = useState(null);
+    //const [carregando, setCarregando] = useState(true);
+    //const [usuariosCadastrados, setUsuariosCadastrados] = useState([]);
 
-    //aqui é onde irá gravar as informaçoes do utimo login
+   //aqui é onde irá gravar as informaçoes do utimo login
     useEffect(() => {
         const recuperarUsuario = localStorage.getItem('user');
 
@@ -29,38 +29,45 @@ export const AutenticacaoProvider = ({ children }) => {
     const recuperarUsuariosCadastrados = () => {
         const usuariosCadastrados = localStorage.getItem('usuariosCadastrados') ?? [];
         return JSON.parse(usuariosCadastrados) ;
+    };*/
+    
+         
+    
+    const verificaLogin = async (nomeUsuario, senhaLogin) => {
+        // Implemente a lógica de verificação de login aqui, incluindo a chamada para o servidor
+        try {
+            const resposta = await axios.post("http://localhost:8800/", {
+                nome: nomeUsuario,
+                senha: senhaLogin,
+            });
+            return resposta;
+        } catch (err) {
+            console.error("Erro ao verificar login:", err);
+            throw err;
+        }
     };
 
-         
-    const login = (nomeUsuario, senhaLogin, lembrarUsuario) => {
-        const usuariosCadastrados = recuperarUsuariosCadastrados();
-        const usuario = usuariosCadastrados.find(
-          (user) => user.nome === nomeUsuario && user.senha === senhaLogin
-        );
-        if (usuario) {
-          setUsuario(usuario);
-          localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
-          navigate('/home');
-        } else {
-          alert('Nome de usuário ou senha inválidos.');
-        }
-      };
       
 
-    const CadastroUsuario = (novoUsuario) => {
-        // Verifica se o nome de usuário já existe na lista
-        if (usuariosCadastrados.find((user) => user.nome === novoUsuario.nome)) {
-          alert('O nome de usuário já está em uso.');
-          return;
+      const CadastroUsuario = (novoUsuario) => {
+        // Valide os campos do novo usuário (por exemplo, se os campos obrigatórios estão preenchidos)
+        if (!novoUsuario.nome || !novoUsuario.email || !novoUsuario.senha) {
+          return res.status(400).json({ error: 'Campos obrigatórios não preenchidos' });
         }
-
-        // Adiciona o novo usuário à lista de usuários cadastrados
-        const novaListaUsuarios = [...usuariosCadastrados, novoUsuario];
-        setUsuariosCadastrados(novaListaUsuarios);
-
-        localStorage.setItem("usuariosCadastrados", JSON.stringify(novaListaUsuarios));
-
-    };
+      
+        // Faça a inserção do novo usuário no banco de dados
+        const q = "INSERT INTO usuarios(nome, email, senha, campo) VALUES (?, ?, ?, ?)";
+        const values = [novoUsuario.nome, novoUsuario.email, novoUsuario.senha, novoUsuario.campo];
+      
+        conexao.query(q, values, (err) => {
+          if (err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Erro interno do servidor' });
+          }
+          return res.status(200).json('Usuário criado com sucesso.');
+        });
+      };
+      
 
     useEffect(() => {
         const carregarUsuariosCadastrados = () => {
@@ -89,11 +96,10 @@ export const AutenticacaoProvider = ({ children }) => {
     };
 
     return (
-        <AutenticacaoContext.Provider value={{ autenticado: !!usuario, usuario, carregando, login, CadastroUsuario, logout, recuperarUsuario }}>
+        <AutenticacaoContext.Provider value={{ verificaLogin, CadastroUsuario, logout, recuperarUsuario }}>
             {children}
         </AutenticacaoContext.Provider>
 
     )
 }
-
 

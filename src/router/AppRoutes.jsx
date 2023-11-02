@@ -39,14 +39,14 @@ const AppRoutes = () => {
             <AutenticacaoProvider>
                 <Routes>
                     <Route exact path="/" element={<Login />} />
-                    <Route exact path="/home" element={<Private> <Home /> </Private>} />
+                    <Route exact path="/home" element={ <Home /> } />
                     <Route exact path="/cadastro" element={<CadastroUsuario />} />
                     <Route exact path="/RecuperaSenha" element={<RecuperaSenha />} />
-                    <Route exact path="/CadastroFuncionario" element={<Private><CadastroFuncionario /> </Private>} />
-                    <Route exact path="/CadastroMaquina" element={<Private> <CadastroMaquina /> </Private>} />
-                    <Route exact path="/CadastroAtividade" element={ <Private> <CadastroAtividade /> </Private>} />
-                    <Route exact path="/Equipes" element={<Private> <Equipes /> </Private>} />
-                    <Route exact path="/Veiculos" element={<Private> <Veiculos /> </Private>} />
+                    <Route exact path="/CadastroFuncionario" element={<CadastroFuncionario /> } />
+                    <Route exact path="/CadastroMaquina" element={ <CadastroMaquina /> } />
+                    <Route exact path="/CadastroAtividade" element={ <CadastroAtividade /> } />
+                    <Route exact path="/Equipes" element={ <Equipes /> } />
+                    <Route exact path="/Veiculos" element={ <Veiculos /> } />
                     
                 </Routes>
             </AutenticacaoProvider>

@@ -1,21 +1,23 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { AutenticacaoContext } from '../../Contexts/Autenticacao';
+import React, { useState, useContext } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import Botao from '../../components/Botao';
 import Textomaior from '../../components/Textomaior';
 import Input from '../../components/Input';
 import Textomenor from '../../components/Textomenor';
+import { AutenticacaoContext } from '../../Contexts/Autenticacao';
 
 
 
 function Login() {
   const navigate = useNavigate();
-  const { login } = useContext(AutenticacaoContext);
+  const { verificaLogin } = useContext(AutenticacaoContext);
+  
+  
 
   const [formState, setFormState] = useState({
-    nomeUsuario: '',
-    senhaLogin: '',
+    nome: '',
+    senha: '',
     lembrarUsuario: false,
   });
 
@@ -28,32 +30,49 @@ function Login() {
   };
 
 
-  const [usuarioEncontrado, setUsuarioEncontrado] = useState(true);
-  const verificaLogin = (evento) => {
+
+  const realizarLogin = async (evento) => {
     evento.preventDefault();
-    const usuarioEncontrado = login(formState.nomeUsuario, formState.senhaLogin);
-    setUsuarioEncontrado(usuarioEncontrado);
+
+
+    try {
+      // Aqui você envia uma solicitação post para o servidor com o nome e senha
+      const resposta = await verificaLogin(formState.nome, formState.senha);
+      console.log('solicitação enviada!');
+
+
+      if (resposta.status === 200) {
+        console.log("Login bem sucedido")
+        //login sucedido
+        navigate('/home');
+      } else {
+        //mensagem de erro
+        alert("Credenciais inválidas. Tente novamente.")
+      }
+    } catch (err) {
+      console.error("Erro fazer login:", err);
+
+    }
+
   }
-
-
 
   return (
     <>
       <main>
         <body className='fundoDesfocado'>
           <div className='imagemLateral'></div>
-          
+
           <section className='lateral'>
-          <Textomaior texto='FAÇA LOGIN' />
+            <Textomaior texto='FAÇA LOGIN' />
             <form method='POST' className='form'>
-            
+
               <article className='gap-input'>
                 <Input
-                  
+
                   tipo='name'
                   placeholder='Usuario'
                   valor={formState.nomeUsuario}
-                  onChange={(evento) => mudaFormState(evento, 'nomeUsuario')}
+                  onChange={(evento) => mudaFormState(evento, 'nome')}
                   icone='usuario'
 
                 />
@@ -61,37 +80,31 @@ function Login() {
                 <Input
                   tipo='password'
                   placeholder='Senha'
-                  valor={formState.senhaLogin}
-                  onChange={(evento) => mudaFormState(evento, 'senhaLogin')}
+                  valor={formState.senha}
+                  onChange={(evento) => mudaFormState(evento, 'senha')}
                   icone='senha'
                 />
               </article>
-              
-              {usuarioEncontrado ? (
-                <h1></h1>
-              ) : (
-                <p></p>
-              )}
-             
-                <input
-                  className='form-check-input'
-                  type='checkbox'
-                  checked={formState.lembrarUsuario}
-                  onChange={(evento) =>
+
+              <input
+                className='form-check-input'
+                type='checkbox'
+                checked={formState.lembrarUsuario}
+                onChange={(evento) =>
                   mudaFormState(evento, 'lembrarUsuario')
-                  }
-                />
-                <Textomenor texto='Lembrar usuário' />
-             
-                <article className='gap-input'>
-              <a className='spanSenha' onClick={() => navigate('/RecuperaSenha')}>Esqueceu sua senha?</a>
+                }
+              />
+              <Textomenor texto='Lembrar usuário' />
+
+              <article className='gap-input'>
+                <a className='spanSenha' onClick={() => navigate('/RecuperaSenha')}>Esqueceu sua senha?</a>
 
 
-              <Botao onClick={verificaLogin} texto="ENTRAR"/>
-              
-              <label className='nao-tem-conta'>Não tem uma conta?
-                <a className='Cadastrar' onClick={() => navigate('/cadastro')}>Cadastre-se</a>
-              </label>
+                <Botao onClick={realizarLogin} texto="ENTRAR" />
+
+                <label className='nao-tem-conta'>Não tem uma conta?
+                  <a className='Cadastrar' onClick={() => navigate('/cadastro')}>Cadastre-se</a>
+                </label>
               </article>
             </form>
 
@@ -102,5 +115,6 @@ function Login() {
     </>
   );
 }
+
 
 export default Login

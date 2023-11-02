@@ -3,8 +3,16 @@ import Cabecalho from "../../components/Header/Cabecalho";
 import Botao from "../../components/Botao";
 import Input from "../../components/Input";
 import Textomaior from '../../components/Textomaior';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 const CadastroFuncionario = () => {
+
+    const navigate = useNavigate();
+
     const [formState, setFormState] = useState({
         nomeFuncionario: "",
         cargo: "",
@@ -17,19 +25,44 @@ const CadastroFuncionario = () => {
         });
     };
 
-    const cadastraFuncionario = (evento) => {
+    const cadastraFuncionario = async(evento) => {
         evento.preventDefault();
-        const novoFuncionario = {
+        /*const novoFuncionario = {
             id: Date.now(),
             nome: formState.nomeFuncionario,
             cargo: formState.cargo,
+        };*/
+
+        try {
+            // Aqui você faz a solicitação HTTP para cadastrar o funcionário
+            await axios.post("http://localhost:8800/CadastroFuncionario", {
+              nomeFuncionario: formState.nomeFuncionario,
+              cargo: formState.cargo,
+            });
+      
+            console.log('Funcionário cadastrado com sucesso!');
+      
+            // Redirecione o usuário para a página desejada após o cadastro bem-sucedido
+            navigate('/Equipes'); // Substitua '/outra-pagina' pelo caminho desejado
+      
+          } catch (error) {
+            console.error('Erro ao cadastrar usuário:', error);
+            alert('Erro ao cadastrar usuário. Verifique os dados e tente novamente.');
+          }
+      
+          // Limpe o estado do formulário após o cadastro
+          setFormState({
+            nomeFuncionario: "",
+            cargo: "",
+          });
         };
 
+        /*
         // Recupera o array de funcionarios do localStorage ou cria um novo array vazio
         const funcionariosStorage = JSON.parse(localStorage.getItem("funcionarios")) || [];
 
         /*verifica se é um array, Se for, ele atribui esse valor à variável 
-        "funcionarios", caso contrário, atribui um novo array vazio. */
+        "funcionarios", caso contrário, atribui um novo array vazio. 
         let funcionarios = funcionariosStorage;
         if (!Array.isArray(funcionarios)) {
           funcionarios = [];
@@ -49,8 +82,10 @@ const CadastroFuncionario = () => {
            setFormState({
             nomeFuncionario: "",
             cargo: "",
-          })
-    };
+          })  */
+    
+  
+            
 
     return (
         <>
@@ -85,5 +120,5 @@ const CadastroFuncionario = () => {
         </>
     );
 
-    }
+}
     export default CadastroFuncionario;

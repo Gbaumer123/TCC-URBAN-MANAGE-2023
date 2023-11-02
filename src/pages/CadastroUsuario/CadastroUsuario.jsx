@@ -64,7 +64,7 @@ function CadastroUsuario() {
       console.log('Usuário cadastrado com sucesso!');
 
       // Redirecione o usuário para a página desejada após o cadastro bem-sucedido
-      navigate('/'); // Substitua '/outra-pagina' pelo caminho desejado
+      navigate('/'); 
 
     } catch (error) {
       console.error('Erro ao cadastrar usuário:', error);

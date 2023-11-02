@@ -45,8 +45,8 @@ const RecuperaSenha = () => {
             <Botao   texto="OBTER CÓDIGO"  />
             </article>
           </form>
+          <a className="voltar" onClick={logout}> Voltar </a>
         </section>
-       
         
       </body>
 
