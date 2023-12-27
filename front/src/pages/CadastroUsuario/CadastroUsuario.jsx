@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { AutenticacaoContext } from '../../Contexts/Autenticacao';
 import "./CadastroUsuario.css";
 import { useNavigate } from 'react-router-dom';
@@ -7,13 +7,15 @@ import Textomaior from '../../components/Textomaior';
 import Input from '../../components/Input';
 import Textomenor from '../../components/Textomenor';
 import api from '../../services/api';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
 const CadastroUsuario = () => {
 
   const [mensagem, setMensagem] = useState('');
-  const [produtos, setProdutos] = useState([]);
+
+  const [mostrarSenha, setMostrarSenha] = useState(false);
 
   const { logout } = useContext(AutenticacaoContext)
 
@@ -38,6 +40,15 @@ const CadastroUsuario = () => {
     });
   };
 
+  const validarEmail = (email) => {
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regexEmail.test(email);
+  };
+
+  const MostrarSenha = () => {
+    setMostrarSenha(!mostrarSenha);
+  };
+
   const verificaRegister = async (evento) => {
     evento.preventDefault();
     console.log(formState);
@@ -54,6 +65,21 @@ const CadastroUsuario = () => {
       return;
     }
 
+    if (formState.nome.length < 3) {
+      alert("Nome inválido!")
+      return;
+    }
+
+    if (formState.senha.length < 8) {
+      alert("Senha deve ter mais de 8 carateres!")
+      return;
+    }
+
+    if (!validarEmail(formState.email)) {
+      alert('E-mail inválido!');
+      return;
+    }
+
     try {
       await api.addUser(formState);
 
@@ -61,6 +87,7 @@ const CadastroUsuario = () => {
       navigate('/');
 
     } catch (error) {
+      alert('Usuário já cadastrado. Tente Novamente!')
       console.error('Erro ao salvar o usuário:', error.message);
       setMensagem('Erro ao salvar o usuário');
     }
@@ -75,15 +102,26 @@ const CadastroUsuario = () => {
     });
   }
 
+  const [maquinas, setMaquinas] = useState([]);
+
+
+
+  useEffect(() => {
+    // Verificar se existem máquinas salvas no localStorage
+    const maquinasSalvas = localStorage.getItem("maquinas");
+    if (maquinasSalvas) {
+      setMaquinas(JSON.parse(maquinasSalvas));
+    }
+  }, []);
+
+
   return (
     <>
       <main>
-        <body class='fundoDesfocado'>
-          <div className='imagemLateral'></div>
+        <body className='fundoDesfocado d-flex'>
 
-
-          <section className='lateral'>
-            <Textomaior texto="Crie sua Conta" />
+          <section className='lateral-a'>
+            <Textomaior texto="CRIE SUA CONTA" />
             <form method="POST" className="form-cad">
 
               {mensagem && <p>{mensagem}</p>}
@@ -105,20 +143,29 @@ const CadastroUsuario = () => {
               />
               <Textomenor texto='Senha:' />
               <Input
-                tipo="password"
+                tipo={mostrarSenha ? 'text' : 'password'}
                 placeholder="senha"
                 valor={formState.senha}
                 onChange={(evento) => mudaFormState(evento, "senha")}
                 icone='senha'
               />
+
+              <input type="checkbox" onChange={MostrarSenha} />
+              <label>Mostrar senha</label>
+              <div style={{ marginBottom: '0px' }}></div>
+
+
               <Textomenor texto='Confirme sua senha:' />
               <Input
-                tipo="password"
+                tipo={mostrarSenha ? 'text' : 'password'}
                 placeholder="Confirme sua senha"
                 valor={formState.senha2}
                 onChange={(evento) => mudaFormState(evento, "senha2")}
                 icone='senha'
               />
+              <input type="checkbox" onChange={MostrarSenha} />
+              <label >Mostrar senha</label>
+              <div style={{ marginBottom: '0px' }}></div>
 
               <Textomenor texto='Cargo:' />
               <article className='gap-input-cad'>
@@ -132,11 +179,44 @@ const CadastroUsuario = () => {
 
                 <Botao onClick={verificaRegister} texto="CADASTRAR" />
 
-                <a className="japossuiconta" onClick={logout}> Já possui conta? </a>
+
               </article>
             </form>
 
           </section>
+
+
+
+          <section className='lateral-b'>
+            
+              <h3 className="mb-4 text-center ">Usuários Cadastrados</h3>
+              <div className="table-responsive">
+                <table className="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nome do usuário</th>
+                      <th scope="col">Cargo</th>
+                      <th scope="col">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {maquinas.map((maquina) => (
+                      <tr key={maquina.id} style={{ backgroundColor: 'white' }}>
+                        <td>{maquina.nomeMaquina}</td>
+                        <td>{maquina.placa}</td>
+                        <td>{maquina.Renavam}</td>
+                        <td>
+                          <button className="btn btn-warning me-3">Editar</button>
+                          <button className="btn btn-danger">Excluir</button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+        
+          </section>
+
         </body>
       </main>
     </>

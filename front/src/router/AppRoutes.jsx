@@ -5,12 +5,14 @@ import Login from "../pages/Login/Login";
 import Home from "../pages/Home/Home";
 import CadastroUsuario from "../pages/CadastroUsuario/CadastroUsuario";
 import RecuperaSenha from "../pages/recuperarSenha/RecuperaSenha";
+import RecuperaCodigo from "../pages/recuperarCodigo/recuperaCodigo";
 import { AutenticacaoProvider, AutenticacaoContext } from "../Contexts/Autenticacao";
 import CadastroFuncionario from "../pages/CadastroFuncionario/CadastroFuncionario";
 import CadastroMaquina from "../pages/CadastroMaquina/CadastroMaquina";
 import CadastroAtividade from "../pages/CadastroAtividade/CadastroAtividade";
 import Equipes from "../pages/Equipes/equipes";
 import Veiculos from "../pages/Veiculos/veiculos";
+import AlteraSenha from "../pages/RecuperaAlteraSenha/AlteraSenha";
 
 
 
@@ -18,7 +20,7 @@ import Veiculos from "../pages/Veiculos/veiculos";
 
 const AppRoutes = () => {
 
-    const Private = ({ children }) => {
+    /*const Private = ({ children }) => {
         const { autenticado, carregando } = useContext(AutenticacaoContext);
        
         
@@ -31,7 +33,7 @@ const AppRoutes = () => {
             }
 
         return children;
-    };
+    };*/
 
     return (
 
@@ -42,6 +44,8 @@ const AppRoutes = () => {
                     <Route exact path="/home" element={ <Home /> } />
                     <Route exact path="/cadastroUsuario" element={<CadastroUsuario />} />
                     <Route exact path="/RecuperaSenha" element={<RecuperaSenha />} />
+                    <Route exact path="/RecuperaCodigo" element={<RecuperaCodigo />} />
+                    <Route exact path="/AlteraSenha" element={<AlteraSenha />} />
                     <Route exact path="/CadastroFuncionario" element={<CadastroFuncionario /> } />
                     <Route exact path="/CadastroMaquina" element={ <CadastroMaquina /> } />
                     <Route exact path="/CadastroAtividade" element={ <CadastroAtividade /> } />
@@ -55,6 +59,5 @@ const AppRoutes = () => {
 }
 
 export default AppRoutes;
-
 
 

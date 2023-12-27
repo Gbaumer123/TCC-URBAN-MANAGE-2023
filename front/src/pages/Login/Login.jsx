@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import Botao from '../../components/Botao';
 import Textomaior from '../../components/Textomaior';
 import Input from '../../components/Input';
-import Textomenor from '../../components/Textomenor';
 import { AutenticacaoContext } from '../../Contexts/Autenticacao';
 
 
@@ -12,8 +11,8 @@ import { AutenticacaoContext } from '../../Contexts/Autenticacao';
 function Login() {
   const navigate = useNavigate();
   const { verificaLogin } = useContext(AutenticacaoContext);
-  
-  
+
+
 
   const [formState, setFormState] = useState({
     nome: '',
@@ -44,7 +43,7 @@ function Login() {
       if (resposta.status === 200) {
         console.log("Login bem sucedido")
         //login sucedido
-        navigate('/home');
+
       } else {
         //mensagem de erro
         alert("Credenciais inválidas. Tente novamente.")
@@ -53,8 +52,14 @@ function Login() {
       console.error("Erro fazer login:", err);
 
     }
-
+    navigate('/home');
   }
+
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+
+    const MostrarSenha = () => {
+        setMostrarSenha(!mostrarSenha);
+    };
 
   return (
     <>
@@ -66,7 +71,7 @@ function Login() {
             <Textomaior texto='FAÇA LOGIN' />
             <form method='POST' className='form'>
 
-              <article className='gap-input'>
+              <article className='gap-input-lo'>
                 <Input
 
                   tipo='name'
@@ -78,7 +83,7 @@ function Login() {
                 />
 
                 <Input
-                  tipo='password'
+                  tipo={mostrarSenha ? 'text' : 'password'}
                   placeholder='Senha'
                   valor={formState.senha}
                   onChange={(evento) => mudaFormState(evento, 'senha')}
@@ -86,15 +91,10 @@ function Login() {
                 />
               </article>
 
-              <input
-                className='form-check-input'
-                type='checkbox'
-                checked={formState.lembrarUsuario}
-                onChange={(evento) =>
-                  mudaFormState(evento, 'lembrarUsuario')
-                }
-              />
-              <Textomenor texto='Lembrar usuário' />
+              <div className='form-check'>
+                <input type="checkbox" onChange={MostrarSenha} className='form-check-input' />
+                <label >Mostrar senha</label>
+              </div>
 
               <article className='gap-input'>
                 <a className='spanSenha' onClick={() => navigate('/RecuperaSenha')}>Esqueceu sua senha?</a>
@@ -103,7 +103,7 @@ function Login() {
                 <Botao onClick={realizarLogin} texto="ENTRAR" />
 
                 <label className='nao-tem-conta'>Não tem uma conta?
-                  <a className='Cadastrar' onClick={() => navigate('/cadastroUsuario')}>Cadastre-se</a>
+                  <a className='Cadastrar' onClick={() => navigate('/cadastroUsuario')}> acesse a pagina de cadastro</a>
                 </label>
               </article>
             </form>

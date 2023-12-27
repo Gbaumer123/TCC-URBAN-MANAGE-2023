@@ -28,26 +28,59 @@ const Home = () => {
 
   return (
     <>
-      <Cabecalho></Cabecalho>
-   
+      <Cabecalho />
+      <div className="container-fluid mt-4">
+        <div className="row">
+          {/* Coluna 1 */}
+          <div className="col-lg-4 mb-4">
+            <div className="card">
+              <div className="card-body">
+                <h2 className="card-title">Atividades Pendentes</h2>
+              </div>
+            </div>
+          </div>
 
-      <div className="d-flex justify-content-between row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 border border-5 ">
-        <div className='border border-1 flex-grow-1'>
-          <h2>Atividades Pendentes</h2>
-          <th>  <Atividade atividades={atividadesPendentes} /></th>
-        
+          {/* Coluna 2 */}
+          <div className="col-lg-4 mb-4">
+            <div className="card">
+              <div className="card-body">
+                <h2 className="card-title">Atividades em Andamento</h2>
+                {/* Adicione o conteúdo desejado aqui */}
+              </div>
+            </div>
+          </div>
+
+          {/* Coluna 3 */}
+          <div className="col-lg-4 mb-4">
+            <div className="card">
+              <div className="card-body">
+                <h2 className="card-title">Atividades Concluídas</h2>
+                {/* Adicione o conteúdo desejado aqui */}
+              </div>
+            </div>
+          </div>
         </div>
-        <div className='border border-1 flex-grow-1'>
-          <h2>Atividades em andamento</h2>
-          
-        </div>
-        <div className='border border-1 flex-grow-1'>
-          <h2 >Atividades Concluídas</h2>
+
+        {/* Tabela abaixo das colunas */}
+        <div className="row">
+          <div className="col-lg-12">
+            <table className="table">
+              <tbody>
+                {/* Adicione as linhas da tabela conforme necessário */}
+                <tr>
+                  <td>
+                    <Atividade atividades={atividadesPendentes} />
+                    </td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </>
-  )
-
+  );
 };
 
 

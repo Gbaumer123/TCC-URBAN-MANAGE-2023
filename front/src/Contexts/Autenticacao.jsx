@@ -46,24 +46,6 @@ export const AutenticacaoProvider = ({ children }) => {
             throw err;
         }
     };
-
-      
-
-      const CadastroUsuario = (novoUsuario) => {
-
-      
-        // Faça a inserção do novo usuário no banco de dados
-        const q = "INSERT INTO usuarios(nome, email, senha, campo) VALUES (?, ?, ?, ?)";
-        const values = [novoUsuario.nome, novoUsuario.email, novoUsuario.senha, novoUsuario.campo];
-      
-        conexao.query(q, values, (err) => {
-          if (err) {
-            console.error(err);
-            return res.status(500).json({ error: 'Erro interno do servidor' });
-          }
-          return res.status(200).json('Usuário criado com sucesso.');
-        });
-      };
       
 
    /* useEffect(() => {
@@ -92,7 +74,7 @@ export const AutenticacaoProvider = ({ children }) => {
     };
 
     return (
-        <AutenticacaoContext.Provider value={{ verificaLogin, CadastroUsuario, logout, recuperarUsuario }}>
+        <AutenticacaoContext.Provider value={{ verificaLogin, logout, recuperarUsuario }}>
             {children}
         </AutenticacaoContext.Provider>
 

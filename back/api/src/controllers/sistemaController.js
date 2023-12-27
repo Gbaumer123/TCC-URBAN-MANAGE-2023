@@ -12,7 +12,7 @@ const addUser = (req, res) => {
       console.error('Erro ao salvar o usuario:', err);
       return res.status(500).json({ error: 'Usuario ja cadastrado' });
     } else {
-      res.status(201).json({ message: 'Usuário salvo com sucesso', result});
+      res.status(201).json({ result: 'Usuário salvo com sucesso', result});
     }
   });
 };
