@@ -3,37 +3,40 @@ import Cabecalho from "../../components/Header/Cabecalho";
 import Botao from "../../components/Botao";
 import Input from "../../components/Input";
 import Textomaior from '../../components/Textomaior';
+import Textomenor from '../../components/Textomenor';
+import "./CadastroAtividade.css";
 
 function CadastroAtividade() {
 
-    const [funcionarios, setFuncionarios] = useState([]);
-    const [maquinas, setMaquinas] = useState([]);
-
-    function carregarFuncionarios() {
-        const funcionariosSalvos = localStorage.getItem("funcionarios");
-        if (funcionariosSalvos) {
-            const funcionariosObj = JSON.parse(funcionariosSalvos);
-            setFuncionarios(funcionariosObj);
-        }
-    }
-
-    function carregarMaquina() {
-        const maquinasSalvas = localStorage.getItem("maquinas");
-        if (maquinasSalvas) {
-            const maquinaObj = JSON.parse(maquinasSalvas);
-            setMaquinas(maquinaObj);
-        }
-    }
-
-    useEffect(() => {
-        carregarFuncionarios();
-        carregarMaquina();
-    }, []);
+    /* const [funcionarios, setFuncionarios] = useState([]);
+     const [maquinas, setMaquinas] = useState([]);
+ 
+     function carregarFuncionarios() {
+         const funcionariosSalvos = localStorage.getItem("funcionarios");
+         if (funcionariosSalvos) {
+             const funcionariosObj = JSON.parse(funcionariosSalvos);
+             setFuncionarios(funcionariosObj);
+         }
+     }
+ 
+     function carregarMaquina() {
+         const maquinasSalvas = localStorage.getItem("maquinas");
+         if (maquinasSalvas) {
+             const maquinaObj = JSON.parse(maquinasSalvas);
+             setMaquinas(maquinaObj);
+         }
+     }
+ 
+     useEffect(() => {
+         carregarFuncionarios();
+         carregarMaquina();
+     }, []);*/
 
     const [formState, setFormState] = useState({
         titulo: "",
+        equipe: "",
         funcionario: "",
-        maquina: "",
+        veiculo: "",
         descricao: "",
     });
 
@@ -74,65 +77,111 @@ function CadastroAtividade() {
         })
     };
 
+    const [veiculos, setVeiculos] = useState([]);
+
+
+
+    useEffect(() => {
+        // Verificar se existem máquinas salvas no localStorage
+        const veiculosSalvos = localStorage.getItem("veiculos");
+        if (veiculosSalvos) {
+            setVeiculos(JSON.parse(veiculosSalvos));
+        }
+    }, []);
+
 
     return (
         <>
             <Cabecalho />
-            <section className="d-flex justify-content-center align-items-center h-100">
-                <div className="form">
-                    <Textomaior texto="Adicione uma nova atividade" corTexto="black" />
-                    <br />
-                    <form method="POST" className="text-center" onSubmit={CriaAtividade}>
+            <main >
+                <section className="lateral7">
+                    <Textomaior texto="ADICIONE UMA NOVA ATIVIDADE" corTexto="black" />
+                    <form method="POST" className='formularioAtiv'>
+                        <Textomenor texto='Titulo da atividade:' />
                         <Input
                             tipo="name"
                             placeholder="Titulo da atividade"
                             valor={formState.titulo}
                             onChange={(evento) => mudaFormState(evento, "titulo")}
                         />
-                        <br></br>
-                        <select
-                            value={formState.funcionario}
-                            onChange={(evento) => mudaFormState(evento, "funcionario")}
-                            className="form-select"
-                        >
-                            <option value="">Selecione um funcionário</option>
-                            {funcionarios && funcionarios.map(funcionario => (
-                                <option key={funcionario.id} value={funcionario.nome}>
-                                    {funcionario.nome}
-                                </option>
-                            ))}
-
-                        </select>
-                        <br></br>
-                        <select
-                            value={formState.maquina}
-                            onChange={(evento) => mudaFormState(evento, "maquina")}
-                            className="form-select"
-                        >
-                            <option value="">Selecione uma máquina</option>
-                            {maquinas && maquinas.map(maquina => (
-                                <option key={maquina.id} value={maquina.nomeMaquina}>
-                                    {maquina.nomeMaquina}
-                                </option>
-                            ))}
+                        <Textomenor texto='Equipe que atuára na atividade:' />
+                        <select class="select" value={formState.campo}
+                            onChange={(evento) => mudaFormState(evento, "equipe")}>
+                            <option selected >Equipes</option>
+                            <option value="1">Rodoviário</option>
+                            <option value="2">Obras</option>
                         </select>
 
-                        <br></br>
+                        <Textomenor texto='Funcionário que atuára na atividade:' />
+                        <select class="select" value={formState.campo}
+                            onChange={(evento) => mudaFormState(evento, "equipe")}>
+                            <option selected >Funcionários</option>
+                            <option value="1">Gabriel</option>
+                            <option value="2">Stephany</option>
+                        </select>
 
+                        <Textomenor texto='Veiculo que atuára na atividade:' />
+                        <select class="select" value={formState.campo}
+                            onChange={(evento) => mudaFormState(evento, "equipe")}>
+                            <option selected >Veículos</option>
+                            <option value="1">Patrola</option>
+                            <option value="2">Retroescavadeira</option>
+                        </select>
+
+                        <Textomenor texto='Descrição da atividade:' />
                         <textarea
-                            className="form-control"
-                            type="text"
+                            className="form-control FBF9C0"
+                            rows="3"  // Ajuste a altura conforme necessário
                             placeholder="Descrição da atividade"
                             value={formState.descricao}
                             onChange={(evento) => mudaFormState(evento, "descricao")}
-                        />
-                        <br></br>
+                        ></textarea>
 
-                        <Botao onClick={CriaAtividade} texto="Criar atividade" corTexto="white" />
+
+                        <Botao onClick={CriaAtividade} texto="CRIAR ATIVIDADE" corTexto="white" />
                     </form>
-                </div>
-            </section>
+                </section >
 
+                <section className='lateral8'>
+                    <div className="table-responsive">
+                        <h3 className="mb-4 text-center ">Atividades Cadastradas</h3>
+                        {veiculos.map((veiculo) => (
+                            <div key={veiculo.id}>
+                                <h4 className='mb-3 text-center'>{veiculo.nomeVeiculo}</h4>
+                                <table className="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Equipe</th>
+                                            <th scope="col">Funcionário</th>
+                                            <th scope="col">Veiculo</th>
+                                            <th scope="col">Descrição</th>
+                                            <th scope="col">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {veiculos.map((veiculo) => (
+                                            <tr key={veiculo.id} style={{ backgroundColor: 'white' }}>
+                                                <td>{veiculo.nomeVeiculo}</td>
+                                                <td>{veiculo.placa}</td>
+                                                <td>{veiculo.nomeVeiculo}</td>
+                                                <td>{veiculo.renavam}</td>
+
+                                                <td>
+                                                    <button className="btn btn-warning me-2">Editar</button>
+                                                    <button className="btn btn-danger">Excluir</button>
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+            </main>
         </>
     );
 }

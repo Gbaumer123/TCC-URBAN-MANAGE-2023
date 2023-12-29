@@ -31,10 +31,13 @@ function Cabecalho() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <button className="btn btn-secondary" onClick={() => navigate('/equipes')}>Equipes</button>
+              <button className="btn btn-secondary" onClick={() => navigate('/CadastroEquipe')}>Equipes</button>
             </li>
             <li className="nav-item">
-              <button className="btn btn-secondary" onClick={() => navigate('/Veiculos')}>Veículos</button>
+              <button className="btn btn-secondary" onClick={() => navigate('/CadastroFuncionario')}>Funcionários</button>
+            </li>
+            <li className="nav-item">
+              <button className="btn btn-secondary" onClick={() => navigate('/CadastroVeiculos')}>Veículos</button>
             </li>
           </ul>
           

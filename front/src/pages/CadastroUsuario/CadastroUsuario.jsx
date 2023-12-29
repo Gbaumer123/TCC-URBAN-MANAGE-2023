@@ -102,15 +102,15 @@ const CadastroUsuario = () => {
     });
   }
 
-  const [maquinas, setMaquinas] = useState([]);
+  const [veiculos, setVeiculos] = useState([]);
 
 
 
   useEffect(() => {
     // Verificar se existem máquinas salvas no localStorage
-    const maquinasSalvas = localStorage.getItem("maquinas");
-    if (maquinasSalvas) {
-      setMaquinas(JSON.parse(maquinasSalvas));
+    const veiculosSalvos = localStorage.getItem("veiculos");
+    if (veiculosSalvos) {
+      setVeiculos(JSON.parse(veiculosSalvos));
     }
   }, []);
 
@@ -118,7 +118,7 @@ const CadastroUsuario = () => {
   return (
     <>
       <main>
-        <body className='fundoDesfocado d-flex'>
+        <body className='fundoDesfocado '>
 
           <section className='lateral-a'>
             <Textomaior texto="CRIE SUA CONTA" />
@@ -185,32 +185,33 @@ const CadastroUsuario = () => {
 
           </section>
 
-
-
-          <section className='lateral-b'>
-            
-              <h3 className="mb-4 text-center ">Usuários Cadastrados</h3>
+          <section className='lateral-b'>            
+              
               <div className="table-responsive">
+              <h2 className="mb-4 text-center ">Usuários Cadastrados</h2>
                 <table className="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th scope="col">Nome do usuário</th>
                       <th scope="col">Cargo</th>
+                      <th scope='col'>Renavam</th>
                       <th scope="col">Ações</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {maquinas.map((maquina) => (
-                      <tr key={maquina.id} style={{ backgroundColor: 'white' }}>
-                        <td>{maquina.nomeMaquina}</td>
-                        <td>{maquina.placa}</td>
-                        <td>{maquina.Renavam}</td>
+                   <tbody>
+                  {veiculos.map((veiculo) => (
+                      <tr key={veiculo.id} style={{ backgroundColor: 'white' }}>
+                        <td>{veiculo.nomeVeiculo}</td>
+                        <td>{veiculo.placa}</td>
+                        <td>{veiculo.renavam}</td>
+                        
                         <td>
                           <button className="btn btn-warning me-3">Editar</button>
                           <button className="btn btn-danger">Excluir</button>
                         </td>
                       </tr>
                     ))}
+                   
                   </tbody>
                 </table>
               </div>

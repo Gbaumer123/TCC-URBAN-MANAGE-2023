@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+
+.lateral7 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    border-radius: 0 0 0 0;
+    background-color: #E7E8EA;
+}
+
+.lateral8 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    border-radius: 0 0 0 0;
+    background-color: #E7E8EA;
+}
+
+/* Estilo para tornar a tabela responsiva */
+.table-responsive {
+    overflow-x: auto;
+}
+
+
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #000000;
+}
+
+.formularioAtiv {
+    width: 80%;
+    max-width: 600px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+@media (max-width: 890px) {
+    main {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .lateral7 {
+      width: 100%;
+      height: 70%;
+      background-size: cover;
+      border-radius: 0;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      max-height: 100vh;
+    }
+  
+    .lateral8 {
+      width: 100%;
+      height: 30%;
+      background-size: cover;
+      border-radius: 0;
+      overflow-y: scroll; /* Adiciona scroll na lateral8 */
+      max-height: 100vh;
+      scroll-behavior: smooth;
+    }
+  }
+  

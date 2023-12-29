@@ -8,10 +8,10 @@ import RecuperaSenha from "../pages/recuperarSenha/RecuperaSenha";
 import RecuperaCodigo from "../pages/recuperarCodigo/recuperaCodigo";
 import { AutenticacaoProvider, AutenticacaoContext } from "../Contexts/Autenticacao";
 import CadastroFuncionario from "../pages/CadastroFuncionario/CadastroFuncionario";
-import CadastroMaquina from "../pages/CadastroMaquina/CadastroMaquina";
+import CadastroVeiculos from "../pages/CadastroMaquina/CadastroVeiculo";
 import CadastroAtividade from "../pages/CadastroAtividade/CadastroAtividade";
-import Equipes from "../pages/Equipes/equipes";
-import Veiculos from "../pages/Veiculos/veiculos";
+import CadastroEquipes from "../pages/Equipes/CadastroEquipe";
+
 import AlteraSenha from "../pages/RecuperaAlteraSenha/AlteraSenha";
 
 
@@ -42,15 +42,14 @@ const AppRoutes = () => {
                 <Routes>
                     <Route exact path="/" element={<Login />} />
                     <Route exact path="/home" element={ <Home /> } />
-                    <Route exact path="/cadastroUsuario" element={<CadastroUsuario />} />
+                    <Route exact path="/CadastroUsuario" element={<CadastroUsuario />} />
                     <Route exact path="/RecuperaSenha" element={<RecuperaSenha />} />
                     <Route exact path="/RecuperaCodigo" element={<RecuperaCodigo />} />
                     <Route exact path="/AlteraSenha" element={<AlteraSenha />} />
                     <Route exact path="/CadastroFuncionario" element={<CadastroFuncionario /> } />
-                    <Route exact path="/CadastroMaquina" element={ <CadastroMaquina /> } />
+                    <Route exact path="/CadastroVeiculos" element={ <CadastroVeiculos /> } />
                     <Route exact path="/CadastroAtividade" element={ <CadastroAtividade /> } />
-                    <Route exact path="/Equipes" element={ <Equipes /> } />
-                    <Route exact path="/Veiculos" element={ <Veiculos /> } />
+                    <Route exact path="/CadastroEquipe" element={ <CadastroEquipes /> } />
                     
                 </Routes>
             </AutenticacaoProvider>
