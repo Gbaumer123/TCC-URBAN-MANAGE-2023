@@ -94,17 +94,18 @@ function CadastroAtividade() {
         <>
             <Cabecalho />
             <main >
+           
                 <section className="lateral7">
-                    <Textomaior texto="ADICIONE UMA NOVA ATIVIDADE" corTexto="black" />
+                <Textomaior texto="ADICIONE UMA NOVA ATIVIDADE" corTexto="black" />
                     <form method="POST" className='formularioAtiv'>
-                        <Textomenor texto='Titulo da atividade:' />
+
                         <Input
                             tipo="name"
                             placeholder="Titulo da atividade"
                             valor={formState.titulo}
                             onChange={(evento) => mudaFormState(evento, "titulo")}
                         />
-                        <Textomenor texto='Equipe que atuára na atividade:' />
+
                         <select class="select" value={formState.campo}
                             onChange={(evento) => mudaFormState(evento, "equipe")}>
                             <option selected >Equipes</option>
@@ -112,7 +113,7 @@ function CadastroAtividade() {
                             <option value="2">Obras</option>
                         </select>
 
-                        <Textomenor texto='Funcionário que atuára na atividade:' />
+                     
                         <select class="select" value={formState.campo}
                             onChange={(evento) => mudaFormState(evento, "equipe")}>
                             <option selected >Funcionários</option>
@@ -120,7 +121,6 @@ function CadastroAtividade() {
                             <option value="2">Stephany</option>
                         </select>
 
-                        <Textomenor texto='Veiculo que atuára na atividade:' />
                         <select class="select" value={formState.campo}
                             onChange={(evento) => mudaFormState(evento, "equipe")}>
                             <option selected >Veículos</option>
@@ -128,33 +128,31 @@ function CadastroAtividade() {
                             <option value="2">Retroescavadeira</option>
                         </select>
 
-                        <Textomenor texto='Descrição da atividade:' />
                         <textarea
-                            className="form-control FBF9C0"
+                            className="textArea"
                             rows="3"  // Ajuste a altura conforme necessário
                             placeholder="Descrição da atividade"
                             value={formState.descricao}
                             onChange={(evento) => mudaFormState(evento, "descricao")}
                         ></textarea>
 
-
                         <Botao onClick={CriaAtividade} texto="CRIAR ATIVIDADE" corTexto="white" />
                     </form>
                 </section >
+           
 
                 <section className='lateral8'>
                     <div className="table-responsive">
-                        <h3 className="mb-4 text-center ">Atividades Cadastradas</h3>
+                        <h3 className="mb-2 text-center ">Atividades Cadastradas</h3>
                         {veiculos.map((veiculo) => (
                             <div key={veiculo.id}>
-                                <h4 className='mb-3 text-center'>{veiculo.nomeVeiculo}</h4>
+                                <h4 className='mb-2 text-center'>{veiculo.nomeVeiculo}</h4>
                                 <table className="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th scope="col">Equipe</th>
                                             <th scope="col">Funcionário</th>
                                             <th scope="col">Veiculo</th>
-                                            <th scope="col">Descrição</th>
                                             <th scope="col">Ações</th>
                                         </tr>
                                     </thead>
@@ -164,7 +162,6 @@ function CadastroAtividade() {
                                                 <td>{veiculo.nomeVeiculo}</td>
                                                 <td>{veiculo.placa}</td>
                                                 <td>{veiculo.nomeVeiculo}</td>
-                                                <td>{veiculo.renavam}</td>
 
                                                 <td>
                                                     <button className="btn btn-warning me-2">Editar</button>
@@ -180,7 +177,6 @@ function CadastroAtividade() {
                         ))}
                     </div>
                 </section>
-
             </main>
         </>
     );

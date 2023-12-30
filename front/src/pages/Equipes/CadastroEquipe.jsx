@@ -76,7 +76,7 @@ const CadastroEquipe = () => {
                         <h3 className='mb-4 text-center '>Equipes Cadastradas</h3>
                         {veiculos.map((veiculo) => (
                             <div key={veiculo.id}>
-                                <h4 className='mb-3'>{veiculo.nomeVeiculo}</h4>
+                                <h4 className='mb-3 text-center'>{veiculo.nomeVeiculo}</h4>
                                 <table className='table table-bordered table-striped'>
                                     <thead>
                                         <tr>

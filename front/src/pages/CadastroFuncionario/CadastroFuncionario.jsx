@@ -67,7 +67,7 @@ const CadastroFuncionario = () => {
             <Textomenor texto='Nome do funcionário:' />
             <Input
               tipo="name"
-              placeholder="Nome"
+              placeholder="Nome do funcionário"
               valor={formState.nomeFuncionario}
               onChange={(evento) => mudaFormState(evento, "nomeFuncionario")}
             />
