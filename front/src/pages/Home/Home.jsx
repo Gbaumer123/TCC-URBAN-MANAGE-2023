@@ -33,7 +33,7 @@ const Home = () => {
         <div className="row">
           {/* Coluna 1 */}
           <div className="col-lg-4 mb-4" >
-            <div className="card" style={{ backgroundColor: "#E7E8EA"}}>
+            <div className="card" style={{ backgroundColor: "#E7E8EA" }}>
               <div className="card-body">
                 <h2 className="card-title">Atividades Pendentes</h2>
               </div>
@@ -53,17 +53,17 @@ const Home = () => {
 
           {/* Coluna 3 */}
           <div className="col-lg-4 mb-4">
-            <div className="card" style={{ backgroundColor: "#E7E8EA"}}>
+            <div className="card" style={{ backgroundColor: "#E7E8EA" }}>
               <div className="card-body">
                 <h2 className="card-title">Atividades Concluídas</h2>
               </div>
-              
+
               <Atividade atividades={atividadesPendentes} />
             </div>
           </div>
         </div>
 
-        
+
       </div>
     </>
   );

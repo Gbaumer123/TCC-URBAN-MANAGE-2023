@@ -1,0 +1,50 @@
+.cssCard {
+    width: 100%;
+    background-color: #424649;
+}
+
+
+.cssCardBody {
+    background-color: #424649;
+    color: #FFED0E;
+    width: "100%";
+}
+
+.cssCardTitle {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 4.5vw;
+    font-size: 4.5vh;
+}
+
+.cssCardText {
+    color: rgb(255, 255, 255);
+    font-size: 2.8vw;
+    font-size: 2.8vh;
+}
+
+@media (max-width: 890px) {
+    .cssCard {
+        width: 100%;
+    }
+
+    .cssCardBody {
+        background-color: #424649;
+        color: #FFED0E;
+        width: 100%;
+    }
+
+    .cssCardTitle {
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 3vw;
+        font-size: 3vh
+    }
+
+    .cssCardText {
+        color: rgb(255, 255, 255);
+        font-size: 2vw;
+        font-size: 2vh
+    }
+
+}

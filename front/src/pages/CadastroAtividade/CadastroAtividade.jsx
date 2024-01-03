@@ -52,8 +52,9 @@ function CadastroAtividade() {
         const novaAtividade = {
             id: Date.now(),
             titulo: formState.titulo,
+            equipe: formState.equipe,
             funcionario: formState.funcionario,
-            maquina: formState.maquina,
+            veiculo: formState.veiculo,
             descricao: formState.descricao,
         };
 
@@ -71,8 +72,9 @@ function CadastroAtividade() {
 
         setFormState({
             titulo: "",
+            equipe: "",
             funcionario: "",
-            maquina: "",
+            veiculo: "",
             descricao: "",
         })
     };
@@ -106,7 +108,7 @@ function CadastroAtividade() {
                             onChange={(evento) => mudaFormState(evento, "titulo")}
                         />
 
-                        <select class="select" value={formState.campo}
+                        <select class="select" value={formState.equipe}
                             onChange={(evento) => mudaFormState(evento, "equipe")}>
                             <option selected >Equipes</option>
                             <option value="1">Rodoviário</option>
@@ -114,15 +116,15 @@ function CadastroAtividade() {
                         </select>
 
                      
-                        <select class="select" value={formState.campo}
-                            onChange={(evento) => mudaFormState(evento, "equipe")}>
+                        <select class="select" value={formState.funcionario}
+                            onChange={(evento) => mudaFormState(evento, "funcionario")}>
                             <option selected >Funcionários</option>
                             <option value="1">Gabriel</option>
                             <option value="2">Stephany</option>
                         </select>
 
-                        <select class="select" value={formState.campo}
-                            onChange={(evento) => mudaFormState(evento, "equipe")}>
+                        <select class="select" value={formState.veiculo}
+                            onChange={(evento) => mudaFormState(evento, "veiculo")}>
                             <option selected >Veículos</option>
                             <option value="1">Patrola</option>
                             <option value="2">Retroescavadeira</option>
