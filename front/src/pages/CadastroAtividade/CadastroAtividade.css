@@ -70,14 +70,13 @@ main {
 
 @media (max-width: 890px) {
     main {
-      height: 100%;
+      height: auto;
       display: flex;
       flex-direction: column;
     }
   
     .lateral7 {
         width: 100%;
-        height: 60%;
         background-size: cover;
         border-radius: 0;
         overflow-y: scroll;
@@ -88,7 +87,6 @@ main {
 
     .lateral8 {
       width: 100%;
-      height: 40%;
       background-size: cover;
       border-radius: 0;
 

@@ -119,10 +119,10 @@ const CadastroUsuario = () => {
   return (
     <>
       <Cabecalho />
-      <main >
+      <main className='main' >
         <div className='fundo'>
           <section className='lateral-a'>
-            <Textomaior texto="CRIE SUA CONTA" />
+            <Textomaior texto="CADASTRE UM NOVO USUÁRIO" />
             <form method="POST" className="form-cad">
 
               {mensagem && <p>{mensagem}</p>}
