@@ -12,7 +12,7 @@ import CadastroAtividade from "../pages/CadastroAtividade/CadastroAtividade";
 import CadastroEquipes from "../pages/Equipes/CadastroEquipe";
 import AlteraSenha from "../pages/RecuperaAlteraSenha/AlteraSenha";
 import MostraAtividadeTv from "../pages/MostraAtividadesTV/MostraAtividadesTV";
-
+import RecuperaCodigo from "../pages/recuperarCodigo/recuperaCodigo";
 
 
 
@@ -44,6 +44,7 @@ const AppRoutes = () => {
                     <Route exact path="/home" element={ <Home /> } />
                     <Route exact path="/CadastroUsuario" element={<CadastroUsuario />} />
                     <Route exact path="/RecuperaSenha" element={<RecuperaSenha />} />
+                    <Route exact path="/RecuperaCodigo" element={<RecuperaCodigo />} />
                     <Route exact path="/AlteraSenha" element={<AlteraSenha />} />
                     <Route exact path="/CadastroFuncionario" element={<CadastroFuncionario /> } />
                     <Route exact path="/CadastroVeiculos" element={ <CadastroVeiculos /> } />
