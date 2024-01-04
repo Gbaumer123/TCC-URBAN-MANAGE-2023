@@ -98,10 +98,9 @@ function Login() {
 
               <article className='gap-input'>
                 <a className='spanSenha' onClick={() => navigate('/RecuperaSenha')}>Esqueceu sua senha?</a>
-
-
-                <Botao onClick={realizarLogin} texto="ENTRAR" />
               </article>
+              <div style={{ marginTop: '10px'}}></div>
+              <Botao onClick={realizarLogin} texto="ENTRAR" />
             </form>
 
           </section>
