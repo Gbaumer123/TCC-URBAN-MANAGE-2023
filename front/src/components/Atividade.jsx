@@ -72,12 +72,12 @@ function Atividade({ atividades }) {
                       <p >VEÍCULOS: {atividade.veiculo}</p>
                       <p >EQUIPE: {atividade.equipe}</p>
                       <p >DESCRIÇÃO: {atividade.descricao}</p> 
-                    </div>
-
-                    <div className="d-flex justify-content-center">
+                    
+                    <div className="d-flex justify-content-center cssButton">
                       <button className="btn btn-info me-3">Iniciar Atividade</button>
                       <button className="btn btn-warning me-3 ">Editar Atividade</button>
                       <button className="btn btn-danger">Excluir Atividade</button>
+                    </div>
                     </div>
                   </div>
                 </div>

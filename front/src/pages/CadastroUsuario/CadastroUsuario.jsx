@@ -119,7 +119,7 @@ const CadastroUsuario = () => {
   return (
     <>
       <Cabecalho />
-      <main>
+      <main >
         <div className='fundo'>
           <section className='lateral-a'>
             <Textomaior texto="CRIE SUA CONTA" />
