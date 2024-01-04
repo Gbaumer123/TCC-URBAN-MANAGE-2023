@@ -8,6 +8,7 @@ import Input from '../../components/Input';
 import Textomenor from '../../components/Textomenor';
 import api from '../../services/api';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Cabecalho from '../../components/Header/Cabecalho';
 
 
 
@@ -117,9 +118,9 @@ const CadastroUsuario = () => {
 
   return (
     <>
+      <Cabecalho />
       <main>
-        <body className='fundoDesfocado '>
-
+        <div className='fundo'>
           <section className='lateral-a'>
             <Textomaior texto="CRIE SUA CONTA" />
             <form method="POST" className="form-cad">
@@ -149,12 +150,10 @@ const CadastroUsuario = () => {
                 onChange={(evento) => mudaFormState(evento, "senha")}
                 icone='senha'
               />
-
-              <input type="checkbox" onChange={MostrarSenha} />
-              <label>Mostrar senha</label>
-              <div style={{ marginBottom: '0px' }}></div>
-
-
+              <div style={{ marginBottom: '0px', display: 'flex', alignItems: 'center' }}>
+                <input type="checkbox" className="cssCheckbox" onChange={MostrarSenha} />
+                <label className='mostrasenha'>Mostrar senha</label>
+              </div>
               <Textomenor texto='Confirme sua senha:' />
               <Input
                 tipo={mostrarSenha ? 'text' : 'password'}
@@ -163,9 +162,11 @@ const CadastroUsuario = () => {
                 onChange={(evento) => mudaFormState(evento, "senha2")}
                 icone='senha'
               />
-              <input type="checkbox" onChange={MostrarSenha} />
-              <label >Mostrar senha</label>
-              <div style={{ marginBottom: '0px' }}></div>
+
+              <div style={{ marginBottom: '0px', display: 'flex', alignItems: 'center' }}>
+                <input type="checkbox" className="cssCheckbox" onChange={MostrarSenha} />
+                <label className='mostrasenha'>Mostrar senha</label>
+              </div>
 
               <Textomenor texto='Cargo:' />
               <article className='gap-input-cad'>
@@ -176,49 +177,46 @@ const CadastroUsuario = () => {
                   <option value="2">Engenheiro</option>
                   <option value="3">Prefeito</option>
                 </select>
-
-                <Botao onClick={verificaRegister} texto="CADASTRAR" />
-
-
               </article>
+
+              <Botao onClick={verificaRegister} texto="CADASTRAR" />
+
             </form>
-
           </section>
 
-          <section className='lateral-b'>            
-              
-              <div className="table-responsive">
+          <section className='lateral-b'>
+
+            <div className="table-responsive">
               <h2 className="mb-4 text-center ">Usuários Cadastrados</h2>
-                <table className="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">Nome do usuário</th>
-                      <th scope="col">Cargo</th>
-                      <th scope='col'>Renavam</th>
-                      <th scope="col">Ações</th>
-                    </tr>
-                  </thead>
-                   <tbody>
+              <table className="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Nome do usuário</th>
+                    <th scope="col">Cargo</th>
+                    <th scope='col'>Renavam</th>
+                    <th scope="col">Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
                   {veiculos.map((veiculo) => (
-                      <tr key={veiculo.id} style={{ backgroundColor: 'white' }}>
-                        <td>{veiculo.nomeVeiculo}</td>
-                        <td>{veiculo.placa}</td>
-                        <td>{veiculo.renavam}</td>
-                        
-                        <td>
-                          <button className="btn btn-warning me-3">Editar</button>
-                          <button className="btn btn-danger">Excluir</button>
-                        </td>
-                      </tr>
-                    ))}
-                   
-                  </tbody>
-                </table>
-              </div>
-        
-          </section>
+                    <tr key={veiculo.id} style={{ backgroundColor: 'white' }}>
+                      <td>{veiculo.nomeVeiculo}</td>
+                      <td>{veiculo.placa}</td>
+                      <td>{veiculo.renavam}</td>
 
-        </body>
+                      <td>
+                        <button className="btn btn-warning me-3">Editar</button>
+                        <button className="btn btn-danger">Excluir</button>
+                      </td>
+                    </tr>
+                  ))}
+
+                </tbody>
+              </table>
+            </div>
+
+          </section>
+        </div>
       </main>
     </>
   );

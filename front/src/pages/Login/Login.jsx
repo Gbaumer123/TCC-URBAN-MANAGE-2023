@@ -63,8 +63,8 @@ function Login() {
 
   return (
     <>
-      <main>
-        <body className='fundoDesfocado'>
+      <body>
+        < main className='fundoDesfocado'>
           <div className='imagemLateral'></div>
 
           <section className='lateral'>
@@ -101,17 +101,13 @@ function Login() {
 
 
                 <Botao onClick={realizarLogin} texto="ENTRAR" />
-
-                <label className='nao-tem-conta'>Não tem uma conta?
-                  <a className='Cadastrar' onClick={() => navigate('/cadastroUsuario')}> acesse a pagina de cadastro</a>
-                </label>
               </article>
             </form>
 
           </section>
+          </main>
         </body>
 
-      </main>
     </>
   );
 }

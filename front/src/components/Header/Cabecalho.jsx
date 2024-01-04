@@ -39,6 +39,12 @@ function Cabecalho() {
             <li className="nav-item">
               <button className="btn btn-secondary" onClick={() => navigate('/CadastroVeiculos')}>Veículos</button>
             </li>
+            <li className="nav-item">
+              <button className="btn btn-secondary" onClick={() => navigate('/CadastroUsuario')}>Usuários</button>
+            </li>
+            <li className="nav-item">
+              <button className="btn btn-secondary" onClick={() => navigate('/MostraAtividadeTV')}>Modo TV</button>
+            </li>
           </ul>
 
           <ul className="navbar-nav">
@@ -54,9 +60,7 @@ function Cabecalho() {
                   {usuario ? usuario.nome : ''}
                 </button>
                 <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
-                  <li><a className="dropdown-item text-center">Profile</a></li>
-                  <li><a className="dropdown-item text-center">Settings</a></li>
-                  <li><button className="dropdown-item text-center" onClick={logout}>Logout</button></li>
+                  <li><button className="dropdown-item text-center" onClick={logout}>Sair</button></li>
                 </ul>
               </div>
             </li>

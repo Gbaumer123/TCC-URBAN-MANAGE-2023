@@ -11,8 +11,8 @@ import CadastroFuncionario from "../pages/CadastroFuncionario/CadastroFuncionari
 import CadastroVeiculos from "../pages/CadastroMaquina/CadastroVeiculo";
 import CadastroAtividade from "../pages/CadastroAtividade/CadastroAtividade";
 import CadastroEquipes from "../pages/Equipes/CadastroEquipe";
-
 import AlteraSenha from "../pages/RecuperaAlteraSenha/AlteraSenha";
+import MostraAtividadeTv from "../pages/MostraAtividadesTV/MostraAtividadesTV";
 
 
 
@@ -50,6 +50,7 @@ const AppRoutes = () => {
                     <Route exact path="/CadastroVeiculos" element={ <CadastroVeiculos /> } />
                     <Route exact path="/CadastroEquipe" element={ <CadastroEquipes /> } />
                     <Route exact path="/CadastroAtividade" element={ <CadastroAtividade /> } />
+                    <Route exact path="/MostraAtividadeTv" element={ <MostraAtividadeTv/> } />
                 
                    
                     

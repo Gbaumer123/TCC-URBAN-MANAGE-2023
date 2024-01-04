@@ -28,8 +28,8 @@ const RecuperaCodigo = () => {
   };
 
   return (
-    <main>
-      <body className='fundoDesfocado'>
+    <body>
+      <main className='fundoDesfocado'>
         <div className='imagemLateral'></div>
         <section className='lateral'>
           <form method='POST' className='formalt'>
@@ -72,8 +72,9 @@ const RecuperaCodigo = () => {
           </form>
           <a className="voltar" onClick={logout}> Voltar </a>
         </section>
+        </main>
       </body>
-    </main>
+   
   );
 };
 

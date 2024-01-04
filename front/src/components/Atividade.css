@@ -1,50 +1,93 @@
 .cssCard {
-    width: 100%;
-    background-color: #424649;
+  width: 100%;
+  background-color: #424649;
+  margin-top: 10px;
 }
 
 
 .cssCardBody {
-    background-color: #424649;
-    color: #FFED0E;
-    width: "100%";
+  background-color: #424649;
+  color: #FFED0E;
+  width: 100%;
 }
 
 .cssCardTitle {
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 4.5vw;
-    font-size: 4.5vh;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 4.5vw;
+  font-size: 4.5vh;
 }
 
 .cssCardText {
-    color: rgb(255, 255, 255);
-    font-size: 2.8vw;
-    font-size: 2.8vh;
+  color: rgb(255, 255, 255);
+  font-size: 2.8vw;
+  font-size: 2.8vh;
+  text-align: justify;
 }
 
+.cssModalBody {
+  background-color: #424649;
+  color: #FFED0E;
+  padding: 2px;
+  border-radius: 10px;
+}
+
+.cssModalTitle {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 4.5vw;
+  font-size: 4.5vh
+}
+
+.cssModalText {
+  color: rgb(255, 255, 255);
+  font-size: 2.5vw;
+  font-size: 2.5vh;
+  text-align: justify;
+}
+
+
 @media (max-width: 890px) {
-    .cssCard {
-        width: 100%;
-    }
+  .cssCard {
+    width: 100%;
+  }
 
-    .cssCardBody {
-        background-color: #424649;
-        color: #FFED0E;
-        width: 100%;
-    }
+  .cssCardBody {
+    background-color: #424649;
+    color: #FFED0E;
+    width: 100%;
+  }
 
-    .cssCardTitle {
-        text-align: center;
-        text-transform: uppercase;
-        font-size: 3vw;
-        font-size: 3vh
-    }
+  .cssCardTitle {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 4vw;
+    font-size: 4vh
+  }
 
-    .cssCardText {
-        color: rgb(255, 255, 255);
-        font-size: 2vw;
-        font-size: 2vh
-    }
+  .cssModalBody {
+    height: auto;
+  }
+
+  .cssCardText {
+    color: rgb(255, 255, 255);
+    font-size: 3vw;
+    font-size: 3vh;
+    text-align: justify;
+  }
+
+
+  .cssModalTitle {
+    font-size: 5.5vw;
+  }
+
+
+  .cssModalText {
+    font-size: 2.5vw;
+    font-size: 2.5vh;
+    text-align: justify;
+  }
+
+
 
 }

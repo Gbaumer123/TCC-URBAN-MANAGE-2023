@@ -26,8 +26,8 @@ const RecuperaSenha = () => {
 
 
   return (
-    <main>
-      <body className='fundoDesfocado'>
+    <body >
+      <main className='fundoDesfocado'>
         <div className='imagemLateral'></div>
         <section className='lateral'>
           <Textomaior texto={'RECUPERE SUA CONTA'}></Textomaior>
@@ -52,9 +52,9 @@ const RecuperaSenha = () => {
           </form>
           <a className="voltar" onClick={logout}> Voltar </a>
         </section>
-
+        </main>
       </body>
-    </main>
+   
   )
 };
 

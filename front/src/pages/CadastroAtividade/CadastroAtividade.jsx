@@ -110,24 +110,24 @@ function CadastroAtividade() {
 
                         <select class="select" value={formState.equipe}
                             onChange={(evento) => mudaFormState(evento, "equipe")}>
-                            <option selected >Equipes</option>
-                            <option value="1">Rodoviário</option>
-                            <option value="2">Obras</option>
+                            <option value="" disabled selected>Equipes</option>
+                            <option value="Rodoviário">Rodoviário</option>
+                            <option value="Obras">Obras</option>
                         </select>
 
                      
                         <select class="select" value={formState.funcionario}
                             onChange={(evento) => mudaFormState(evento, "funcionario")}>
-                            <option selected >Funcionários</option>
-                            <option value="1">Gabriel</option>
-                            <option value="2">Stephany</option>
+                           <option value="" disabled selected>Funcionários</option>
+                            <option value="Gabriel">Gabriel</option>
+                            <option value="Stephany">Stephany</option>
                         </select>
 
                         <select class="select" value={formState.veiculo}
                             onChange={(evento) => mudaFormState(evento, "veiculo")}>
-                            <option selected >Veículos</option>
-                            <option value="1">Patrola</option>
-                            <option value="2">Retroescavadeira</option>
+                            <option value="" disabled selected>Veículos</option>
+                            <option value="Patrola">Patrola</option>
+                            <option value="Retroescavadeira">Retroescavadeira</option>
                         </select>
 
                         <textarea

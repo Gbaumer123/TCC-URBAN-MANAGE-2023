@@ -5,15 +5,16 @@ function Modal({ dados, fecha, titulo, conteudo }) {
     return null;
   }
 
+
   return (
-    <div className="modal fade show" style={{ display: 'flex', backgroundColor: 'rgba(0, 0, 0, 0.5)', justifyContent: 'center'}}  >
-      <div className="modal-lg " style={{  width: '90%'  }}> 
+    <div className="modal fade show" style={{ display: 'flex', backgroundColor: 'rgba(0, 0, 0, 0.5)', justifyContent: 'center', alignItems: 'center'}}  >
+      <div className="modal-lg " style={{ width: '90%' }}>
         <div className="modal-content" style={{}}>
           <div className="modal-header">
-            <h5 className="modal-title">{titulo}</h5>
+            <h2 className="modal-title">{titulo}</h2>
             <button type="button" className="btn-close" onClick={fecha}></button>
           </div>
-          <div className="modal-body">
+          <div className="modal-body"  >
             {conteudo}
           </div>
           <div className="modal-footer">

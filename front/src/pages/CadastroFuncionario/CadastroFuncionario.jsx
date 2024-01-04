@@ -78,8 +78,6 @@ const CadastroFuncionario = () => {
               valor={formState.cargo}
               onChange={(evento) => mudaFormState(evento, "cargo")}
             />
-         
-
             <Textomenor texto='Equipe:' />
             <select class="select" value={formState.campo}
               onChange={(evento) => mudaFormState(evento, "equipe")}>
