@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "../pages/Login/Login";
 import Home from "../pages/Home/Home";
 import CadastroUsuario from "../pages/CadastroUsuario/CadastroUsuario";
 import RecuperaSenha from "../pages/recuperarSenha/RecuperaSenha";
-import { AutenticacaoProvider, AutenticacaoContext } from "../Contexts/Autenticacao";
+import { AutenticacaoProvider} from "../Contexts/Autenticacao";
 import CadastroFuncionario from "../pages/CadastroFuncionario/CadastroFuncionario";
 import CadastroVeiculos from "../pages/CadastroMaquina/CadastroVeiculo";
 import CadastroAtividade from "../pages/CadastroAtividade/CadastroAtividade";
