@@ -2,7 +2,7 @@
 const API_URL = 'http://localhost:3000/api';
 
 const api = {
-    async addUser(formState) {
+    async adicionaUsuario(formState) {
 
             const response = await fetch(`${API_URL}/cadastroUsuario`, {
                 method: 'POST',

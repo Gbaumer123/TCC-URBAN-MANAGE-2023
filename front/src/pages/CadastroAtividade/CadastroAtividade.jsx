@@ -96,18 +96,18 @@ function CadastroAtividade() {
         <>
             <Cabecalho />
             <main >
-           
-                <section className="lateral7">
-                <Textomaior texto="ADICIONE UMA NOVA ATIVIDADE" corTexto="black" />
-                    <form method="POST" className='formularioAtiv'>
 
+                <section className="lateral7">
+                    <Textomaior texto="ADICIONE UMA NOVA ATIVIDADE" corTexto="black" />
+                    <form method="POST" className='formularioAtiv'>
+                        <Textomenor texto='Título da atividade:' />
                         <Input
                             tipo="name"
                             placeholder="Titulo da atividade"
                             valor={formState.titulo}
                             onChange={(evento) => mudaFormState(evento, "titulo")}
                         />
-
+                        <Textomenor texto='Equipe:' />
                         <select class="select" value={formState.equipe}
                             onChange={(evento) => mudaFormState(evento, "equipe")}>
                             <option value="" disabled selected>Equipes</option>
@@ -115,21 +115,21 @@ function CadastroAtividade() {
                             <option value="Obras">Obras</option>
                         </select>
 
-                     
+                        <Textomenor texto='Funcionários:' />
                         <select class="select" value={formState.funcionario}
                             onChange={(evento) => mudaFormState(evento, "funcionario")}>
-                           <option value="" disabled selected>Funcionários</option>
+                            <option value="" disabled selected>Funcionários</option>
                             <option value="Gabriel">Gabriel</option>
                             <option value="Stephany">Stephany</option>
                         </select>
-
+                        <Textomenor texto='Veículos:' />
                         <select class="select" value={formState.veiculo}
                             onChange={(evento) => mudaFormState(evento, "veiculo")}>
                             <option value="" disabled selected>Veículos</option>
                             <option value="Patrola">Patrola</option>
                             <option value="Retroescavadeira">Retroescavadeira</option>
                         </select>
-
+                        <Textomenor texto='Descrição da atividade:' />
                         <textarea
                             className="textArea"
                             rows="3"  // Ajuste a altura conforme necessário
@@ -141,7 +141,7 @@ function CadastroAtividade() {
                         <Botao onClick={CriaAtividade} texto="CRIAR ATIVIDADE" corTexto="white" />
                     </form>
                 </section >
-           
+
 
                 <section className='lateral8'>
                     <div className="table-responsive">
