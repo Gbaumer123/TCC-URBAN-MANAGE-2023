@@ -14,7 +14,7 @@ function Modal({ dados, fecha, titulo, conteudo }) {
             <h2 className="modal-title">{titulo}</h2>
             <button type="button" className="btn-close" onClick={fecha}></button>
           </div>
-          <div className="modal-body"   >
+          <div className="modal-body"  >
             {conteudo}
           </div>
           <div className="modal-footer">

@@ -25,7 +25,8 @@
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
     "reactstrap": "^9.1.8",
-    "safer-buffer": "^2.1.2"
+    "safer-buffer": "^2.1.2",
+    "select2": "^4.1.0-rc.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

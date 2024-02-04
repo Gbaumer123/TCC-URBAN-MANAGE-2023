@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Atividade from '../../components/Atividade';
+import AtividadeTV from '../../components/AtividadeTV';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -28,7 +28,7 @@ const MostraAtividadeTv = () => {
                             <div className="card-body">
                                 <h2 className="card-title">Atividades Pendentes</h2>
                             </div>
-                            <Atividade atividades={atividadesPendentes} />
+                            <AtividadeTV atividades={atividadesPendentes} />
                         </div>
                     </div>
 
@@ -38,7 +38,7 @@ const MostraAtividadeTv = () => {
                             <div className="card-body">
                                 <h2 className="card-title">Atividades em Andamento</h2>
                             </div>
-                            <Atividade atividades={atividadesPendentes} />
+                            <AtividadeTV atividades={atividadesPendentes} />
                         </div>
                     </div>
 
@@ -49,7 +49,7 @@ const MostraAtividadeTv = () => {
                                 <h2 className="card-title">Atividades Concluídas</h2>
                             </div>
 
-                            <Atividade atividades={atividadesPendentes} />
+                            <AtividadeTV atividades={atividadesPendentes} />
                         </div>
                     </div>
                 </div>

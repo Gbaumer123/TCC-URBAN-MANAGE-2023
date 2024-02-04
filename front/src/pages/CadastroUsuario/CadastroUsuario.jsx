@@ -188,6 +188,8 @@ const CadastroUsuario = () => {
                 </select>
               </article>
 
+              
+
               <Botao onClick={verificaRegister} texto="CADASTRAR" />
 
             </form>
@@ -200,9 +202,6 @@ const CadastroUsuario = () => {
                 <thead>
                   <tr>
                     <th scope="col">Nome do usuário</th>
-                    <th scope="col">Email</th>
-                    <th scope='col'>Cargo</th>
-                    <th scope='col'>Senha</th>
                     <th scope="col">Ações</th>
                   </tr>
                 </thead>
@@ -210,9 +209,6 @@ const CadastroUsuario = () => {
                   {veiculos.map((veiculo) => (
                     <tr key={veiculo.id} style={{ backgroundColor: 'white' }}>
                       <td>{veiculo.nomeVeiculo}</td>
-                      <td>{veiculo.placa}</td>
-                      <td>{veiculo.renavam}</td>
-                      <td>{veiculo.renavam}</td>
                       <td>
                         <button className="btn btn-warning me-1">Editar</button>
                         <button className="btn btn-danger">Excluir</button>

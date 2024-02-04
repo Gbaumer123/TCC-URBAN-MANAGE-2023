@@ -5,6 +5,8 @@ import Input from "../../components/Input";
 import Textomaior from '../../components/Textomaior';
 import Textomenor from '../../components/Textomenor';
 import "./CadastroAtividade.css";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 function CadastroAtividade() {
 
@@ -35,15 +37,25 @@ function CadastroAtividade() {
     const [formState, setFormState] = useState({
         titulo: "",
         equipe: "",
-        funcionario: "",
+        funcionario: [],
         veiculo: "",
         descricao: "",
     });
 
     // Define a função para atualizar o estado do formulário
     const mudaFormState = (evento, campo) => {
-        setFormState({ ...formState, [campo]: evento.target.value });
+        let novoValor;
+
+        // Verifica se o campo é 'funcionario' para lidar com a seleção múltipla
+        if (campo === 'funcionario') {
+            novoValor = Array.from(evento.target.selectedOptions, option => option.value);
+        } else {
+            novoValor = evento.target.value;
+        }
+
+        setFormState((estadoAtual) => ({ ...estadoAtual, [campo]: novoValor }));
     };
+
 
     const CriaAtividade = (evento) => {
         evento.preventDefault();
@@ -107,6 +119,7 @@ function CadastroAtividade() {
                             valor={formState.titulo}
                             onChange={(evento) => mudaFormState(evento, "titulo")}
                         />
+
                         <Textomenor texto='Equipe:' />
                         <select class="select" value={formState.equipe}
                             onChange={(evento) => mudaFormState(evento, "equipe")}>
@@ -118,10 +131,14 @@ function CadastroAtividade() {
                         <Textomenor texto='Funcionários:' />
                         <select class="select" value={formState.funcionario}
                             onChange={(evento) => mudaFormState(evento, "funcionario")}>
-                            <option value="" disabled selected>Funcionários</option>
+                            <option disabled value >Funcionários</option>
                             <option value="Gabriel">Gabriel</option>
                             <option value="Stephany">Stephany</option>
                         </select>
+
+
+
+
                         <Textomenor texto='Veículos:' />
                         <select class="select" value={formState.veiculo}
                             onChange={(evento) => mudaFormState(evento, "veiculo")}>
@@ -129,14 +146,22 @@ function CadastroAtividade() {
                             <option value="Patrola">Patrola</option>
                             <option value="Retroescavadeira">Retroescavadeira</option>
                         </select>
+
                         <Textomenor texto='Descrição da atividade:' />
-                        <textarea
-                            className="textArea"
-                            rows="3"  // Ajuste a altura conforme necessário
-                            placeholder="Descrição da atividade"
+                        <ReactQuill
+                            className='textArea'
+                            style={{ maxHeight: '15vh', overflow: 'auto' }}
                             value={formState.descricao}
-                            onChange={(evento) => mudaFormState(evento, "descricao")}
-                        ></textarea>
+                            onChange={(value) => mudaFormState({ target: { value } }, 'descricao')}
+                            modules={{
+                                toolbar: [
+                                    [{ 'header': [1, 2, false] }],
+                                    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                                    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                                    ['link',  'code'],
+                                ],
+                            }}
+                        />
 
                         <Botao onClick={CriaAtividade} texto="CRIAR ATIVIDADE" corTexto="white" />
                     </form>
