@@ -13,11 +13,14 @@ import Cabecalho from '../../components/Header/Cabecalho';
 
 const CadastroUsuario = () => {
 
-  const [mensagem, setMensagem] = useState('');
 
   const [mostrarSenha, setMostrarSenha] = useState(false);
 
   const [mostrarConfirmarsenha, setMostrarConfirmarsenha] = useState(false);
+
+  const [usuarios, setUsuarios] = useState([]);
+
+  const [itemSelecionado, setItemSelecionado] = useState(null);
 
   const navigate = useNavigate();
 
@@ -74,14 +77,14 @@ const CadastroUsuario = () => {
 
     try {
       await api.adicionaUsuario(formState);
+      alert('Usuário salvo com sucesso')
 
-      setMensagem('Usuário salvo com sucesso');
+      await carregarUsuarios();
 
     } catch (error) {
       alert('Usuário já cadastrado, Tente Novamente!')
-      console.error('Erro ao salvar o usuário:', error);
-      setMensagem('Erro ao salvar o usuário');
     }
+
 
     // Limpe o estado do formulário após o cadastro
     setFormState({
@@ -92,6 +95,76 @@ const CadastroUsuario = () => {
       campo: "",
     });
   }
+
+  const eventoSubmit = async (evento) => {
+    evento.preventDefault();
+    if (itemSelecionado) {
+      await atualizarFormulario(formState)
+    } else {
+      await verificaRegister(evento)
+    }
+  };
+
+
+
+  const atualizarFormulario = async (formState) => {
+    try {
+      await api.atualizarUsuario(formState)
+
+      alert('Usuário editado com sucesso');
+    } catch (error) {
+      console.error('Erro ao editar o usuario:', error.message);
+      alert('Erro ao editar o usuario');
+    }
+
+  };
+
+  const carregarUsuarios = async () => {
+    try {
+      const dados = await api.listarUsuarios();
+      setUsuarios(dados);
+    } catch (error) {
+      console.error('Erro ao carregar os usuarios:', error.message);
+      console.log(error)
+    }
+  };
+
+  const excluirUsuario = async (idusuarios) => {
+    try {
+      console.log('Tentando excluir usuário com ID:', idusuarios);
+
+      await api.excluirUsuario(idusuarios);
+      
+      
+
+      const novaLista = usuarios.filter((usuario) => usuario.idusuarios !== idusuarios);
+      
+      setUsuarios(novaLista);
+
+    } catch (error) {
+      console.error('Erro ao excluir o usuario:', error.message);
+      console.log('Resposta da API:', error.response);
+    }
+  };
+ 
+
+  const editarUsuario = async (idusuarios) => {
+    try {
+      const usuarioSelecionado = await api.buscarUsuarioPorId(idusuarios);
+      setItemSelecionado(usuarioSelecionado);
+      console.log('item:', itemSelecionado)
+      setDadosDoFormulario(usuarioSelecionado.resultado[0]);
+
+    } catch (error) {
+      console.error('Erro ao editar o usuario:', error.message);
+    }
+  };
+
+  useEffect(() => {
+    carregarUsuarios();
+  }, []);
+
+
 
   const validarEmail = (email) => {
     const testeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -109,17 +182,9 @@ const CadastroUsuario = () => {
   };
 
 
-  const [veiculos, setVeiculos] = useState([]);
+ 
 
 
-
-  useEffect(() => {
-    // Verificar se existem máquinas salvas no localStorage
-    const veiculosSalvos = localStorage.getItem("veiculos");
-    if (veiculosSalvos) {
-      setVeiculos(JSON.parse(veiculosSalvos));
-    }
-  }, []);
 
 
   return (
@@ -129,9 +194,7 @@ const CadastroUsuario = () => {
         <div className='fundo'>
           <section className='lateral-a'>
             <Textomaior texto="CADASTRE UM NOVO USUÁRIO" />
-            <form method="POST" className="form-cad">
-
-              {mensagem && <p>{mensagem}</p>}
+            <form onSubmit={eventoSubmit} className="form-cad">
               <Textomenor texto='Nome do usuário:' />
               <Input
                 tipo="name"
@@ -188,9 +251,9 @@ const CadastroUsuario = () => {
                 </select>
               </article>
 
-              
 
-              <Botao onClick={verificaRegister} texto="CADASTRAR" />
+
+              <Botao type="submit" texto="CADASTRAR" />
 
             </form>
           </section>
@@ -206,12 +269,12 @@ const CadastroUsuario = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {veiculos.map((veiculo) => (
-                    <tr key={veiculo.id} style={{ backgroundColor: 'white' }}>
-                      <td>{veiculo.nomeVeiculo}</td>
-                      <td>
-                        <button className="btn btn-warning me-1">Editar</button>
-                        <button className="btn btn-danger">Excluir</button>
+                {usuarios.map((usuario) => (
+                <tr key={usuario.idusuarios} style={{ backgroundColor: 'white' }}>
+                  <td>{usuario.nome}</td>
+                  <td>
+                    <button onClick={() => editarUsuario(usuario.idusuarios)} className="btn btn-warning me-1">Editar</button>
+                    <button onClick={() => excluirUsuario(usuario.idusuarios)} className="btn btn-danger">Excluir</button>
                       </td>
                     </tr>
                   ))}

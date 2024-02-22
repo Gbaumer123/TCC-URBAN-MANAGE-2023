@@ -3,21 +3,75 @@ const SistemaModel = require('../models/sistemaModel');
 
 
 //rota para adicionar usuario
-const addUser = (req, res) => {
+const adicionaUsuario = (req, res) => {
 
   const { nome, email, senha, campo } = req.body
 
-  SistemaModel.addUser(nome, email, senha, campo, (err, result) => {
+  SistemaModel.adicionaUsuario(nome, email, senha, campo, (err, resultado) => {
     if (err) {
       console.error('Erro ao salvar o usuario:', err);
       return res.status(500).json({ error: 'Usuario ja cadastrado' });
     } else {
-      res.status(201).json({ result: 'Usuário salvo com sucesso', result});
+      console.log('Usuário cadastrado com sucesso')
+      res.status(201).json({ result: 'Usuário salvo com sucesso', resultado });
     }
   });
 };
 
-module.exports = {addUser};
+  const atualizarUsuario = (req, res) => {
+    const { idusuarios, nome, email, senha, campo } = req.body;
+
+    SistemaModel.atualizarUsuario(idusuarios, nome, email, senha, campo, (err, result) => {
+      if (err) {
+        console.error('Erro ao atualizar o usuario:', err);
+        return res.status(500).json({ error: 'Erro ao atualizar o usuario' });
+      }
+      console.log('Usuário atualizado com sucesso')
+      res.status(200).json({ message: 'Usuario atualizado com sucesso', resultado });
+    })
+  };
+
+  const excluirUsuario = (req, res) => {
+    const { idusuarios } = req.params;
+  
+    SistemaModel.excluirUsuario(idusuarios, (err, resultado) => {
+      if (err) {
+        console.error('Erro ao excluir o usuario:', err);
+        return res.status(500).json({ error: 'Erro ao excluir o usuario' });
+      }
+      console.log('Usuário excluido com sucesso')
+      res.status(200).json({ message: 'Usuario excluído com sucesso', resultado });
+    });
+  };
+
+  const listarUsuarios = (req, res) => {
+    SistemaModel.listarUsuarios((err, resultado) => {
+      if (err) {
+        console.error('Erro ao listar os usuarios:', err);
+        return res.status(500).json({ error: 'Erro ao listar os usuarios' });
+      }
+      res.status(200).json(resultado);
+    });
+  };
+
+  const buscarUsuarioPorId = (req, res) => {
+    const {idusuarios} = req.params;
+    SistemaModel.buscarUsuarioPorId(idusuarios, (err, resultado) => {
+      if (err) {
+        console.error('Erro ao listar os usuarios:', err);
+        return res.status(500).json({ error: 'Erro ao listar os usuarios' });
+      }
+      res.status(200).json({ message: 'Usuario encontrado', resultado });
+      
+    });
+  };
+
+
+
+
+
+module.exports = { adicionaUsuario, atualizarUsuario, excluirUsuario, listarUsuarios, buscarUsuarioPorId };
+
 /*//Rota para verificação de login
 exports.verificaLogin = (req, res) => {
   const { nome,senha } = req.body
@@ -27,7 +81,7 @@ exports.verificaLogin = (req, res) => {
     console.error(err);
     return res.status(500).json({ err: "Erro interno do servidor" });
   }
-  // Verifique se a consulta retornou algum resultado 
+  // Verifique se a consulta retornou algum resultado
   if (results.length === 0) {
     // se for  = 0 Credenciais inválidas
     return res.status(401).json({ err: "Credendiciais invalidas" })
@@ -36,12 +90,12 @@ exports.verificaLogin = (req, res) => {
     // Credenciais válidas
     return res.status(200).json({ success: "Login bem-sucedido" });
   }
-  
+
 
 }
 
 exports.addFuncionario = (req, res) => {
-  
+
 
   const { nomeFuncionario, cargo } = req.body
 
@@ -56,7 +110,7 @@ exports.addFuncionario = (req, res) => {
       }
     });
   };
- 
+
    /* console.log('Dados enviados do formulário:', w);
   conexao.query(w, valuesFuncionario, (err) => {
     if (err) return res.json(err);

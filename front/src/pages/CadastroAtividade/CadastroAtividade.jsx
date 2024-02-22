@@ -148,6 +148,7 @@ function CadastroAtividade() {
                         </select>
 
                         <Textomenor texto='Descrição da atividade:' />
+                      
                         <ReactQuill
                             className='textArea'
                             style={{ maxHeight: '15vh', overflow: 'auto' }}
