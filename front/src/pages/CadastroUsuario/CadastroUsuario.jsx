@@ -5,7 +5,7 @@ import Botao from '../../components/Botao';
 import Textomaior from '../../components/Textomaior';
 import Input from '../../components/Input';
 import Textomenor from '../../components/Textomenor';
-import api from '../../services/api';
+import apiUsuarios from '../../services/apiUsuarios/apiUsuarios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cabecalho from '../../components/Header/Cabecalho';
 
@@ -76,7 +76,7 @@ const CadastroUsuario = () => {
     }
 
     try {
-      await api.adicionaUsuario(formState);
+      await apiUsuarios.adicionaUsuario(formState);
       alert('Usuário salvo com sucesso')
 
       await carregarUsuarios();
@@ -99,6 +99,7 @@ const CadastroUsuario = () => {
   const eventoSubmit = async (evento) => {
     evento.preventDefault();
     if (itemSelecionado) {
+      console.log(itemSelecionado)
       await atualizarFormulario(formState)
     } else {
       await verificaRegister(evento)
@@ -109,19 +110,29 @@ const CadastroUsuario = () => {
 
   const atualizarFormulario = async (formState) => {
     try {
-      await api.atualizarUsuario(formState)
-
+      await apiUsuarios.atualizarUsuario(formState)
       alert('Usuário editado com sucesso');
     } catch (error) {
       console.error('Erro ao editar o usuario:', error.message);
       alert('Erro ao editar o usuario');
     }
 
+    carregarUsuarios();
+
+    setFormState({
+      nome: "",
+      email: "",
+      senha: "",
+      senha2: "",
+      campo: "",
+    });
+
+    
   };
 
   const carregarUsuarios = async () => {
     try {
-      const dados = await api.listarUsuarios();
+      const dados = await apiUsuarios.listarUsuarios();
       setUsuarios(dados);
     } catch (error) {
       console.error('Erro ao carregar os usuarios:', error.message);
@@ -133,7 +144,7 @@ const CadastroUsuario = () => {
     try {
       console.log('Tentando excluir usuário com ID:', idusuarios);
 
-      await api.excluirUsuario(idusuarios);
+      await apiUsuarios.excluirUsuario(idusuarios);
       
       
 
@@ -150,10 +161,10 @@ const CadastroUsuario = () => {
 
   const editarUsuario = async (idusuarios) => {
     try {
-      const usuarioSelecionado = await api.buscarUsuarioPorId(idusuarios);
+      const usuarioSelecionado = await apiUsuarios.buscarUsuarioPorId(idusuarios);
       setItemSelecionado(usuarioSelecionado);
-      console.log('item:', itemSelecionado)
-      setDadosDoFormulario(usuarioSelecionado.resultado[0]);
+      console.log('item:', usuarioSelecionado)
+      setFormState(usuarioSelecionado.resultado[0]);
 
     } catch (error) {
       console.error('Erro ao editar o usuario:', error.message);
@@ -194,7 +205,7 @@ const CadastroUsuario = () => {
         <div className='fundo'>
           <section className='lateral-a'>
             <Textomaior texto="CADASTRE UM NOVO USUÁRIO" />
-            <form onSubmit={eventoSubmit} className="form-cad">
+            <form  className="form-cad">
               <Textomenor texto='Nome do usuário:' />
               <Input
                 tipo="name"
@@ -253,7 +264,7 @@ const CadastroUsuario = () => {
 
 
 
-              <Botao type="submit" texto="CADASTRAR" />
+              <Botao type="submit" onClick={eventoSubmit} texto="CADASTRAR" />
 
             </form>
           </section>

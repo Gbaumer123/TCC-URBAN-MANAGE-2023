@@ -1,13 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const sistemaController = require('../controllers/sistemaController');
+const usuarioController = require('../controllers/usuarioController/usuarioController');
+const veiculoController = require('../controllers/veiculoController/veiculoController')
 
-// Rotas CRUD
-router.post('/adicionaUsuario', sistemaController.adicionaUsuario);
-router.put('/atualizarUsuario', sistemaController.atualizarUsuario);
-router.delete('/excluirUsuario/:id', sistemaController.excluirUsuario);
-router.get('/listarUsuarios', sistemaController.listarUsuarios);
-router.get('/listarUsuarios/:id', sistemaController.buscarUsuarioPorId);
+// Rotas Usuarios
+router.post('/adicionaUsuario', usuarioController.adicionaUsuario);
+router.put('/atualizarUsuario', usuarioController.atualizarUsuario);
+router.delete('/excluirUsuario/:id', usuarioController.excluirUsuario);
+router.get('/listarUsuarios', usuarioController.listarUsuarios);
+router.get('/listarUsuarios/:id', usuarioController.buscarUsuarioPorId);
 
 
+// Rotas Veiculos
+router.post('/adicionaVeiculo', veiculoController.adicionaVeiculo);
+router.put('/atualizarVeiculo', veiculoController.atualizarVeiculo);
+router.delete('/excluirVeiculo/:id', veiculoController.excluirVeiculo);
+router.get('/listarVeiculos', veiculoController.listarVeiculos);
+router.get('/listarVeiculos/:id', veiculoController.buscarVeiculoPorId);
 module.exports = router;
