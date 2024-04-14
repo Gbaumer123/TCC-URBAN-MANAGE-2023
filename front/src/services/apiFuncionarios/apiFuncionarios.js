@@ -3,10 +3,10 @@ const API_URL = 'http://localhost:3000/api';
 
 const api = {
 
-    //ROTAS PARA ADICONAR USUÁRIO
-    async adicionaUsuario(formState) {
+    //ROTAS PARA ADICONAR Funcionario
+    async adicionaFuncionario(formState) {
 
-        const resposta = await fetch(`${API_URL}/adicionaUsuario`, {
+        const resposta = await fetch(`${API_URL}/adicionaFuncionario`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -15,16 +15,16 @@ const api = {
         });
 
         if (!resposta.ok) {
-            throw new Error('Erro ao adicionar o usuário');
+            throw new Error('Erro ao adicionar o Funcionario');
         }
     },
 
-    async listarUsuarios() {
+    async listarFuncionarios() {
         try {
-            const resposta = await fetch(`${API_URL}/listarUsuarios`);
+            const resposta = await fetch(`${API_URL}/listarFuncionarios`);
             if (!resposta.ok) {
                 const erroTexto = await resposta.text();
-                throw new Error(`Erro ao carregar os usuários: ${erroTexto}`);
+                throw new Error(`Erro ao carregar os Funcionarios: ${erroTexto}`);
             }
             return resposta.json();
         } catch (error) {
@@ -33,25 +33,25 @@ const api = {
         }
     },
 
-    async buscarUsuarioPorId(id) {
-        const resposta = await fetch(`${API_URL}/listarUsuarios/${id}`);
+    async buscarFuncionarioPorId(id) {
+        const resposta = await fetch(`${API_URL}/listarFuncionarios/${id}`);
         if (!resposta.ok) {
-            throw new Error('Erro ao carregar os usuarios');
+            throw new Error('Erro ao carregar os Funcionarios');
         }
         return resposta.json();
     },
 
-    async excluirUsuario(id) {
-        const resposta = await fetch(`${API_URL}/excluirUsuario/${id}`, {
+    async excluirFuncionario(id) {
+        const resposta = await fetch(`${API_URL}/excluirFuncionario/${id}`, {
             method: 'DELETE',
         });
         if (!resposta.ok) {
-            throw new Error('Erro ao excluir o usuario');
+            throw new Error('Erro ao excluir o Funcionario');
         }
     },
 
-    async atualizarUsuario(formState) {
-        const resposta = await fetch(`${API_URL}/atualizarUsuario`, {
+    async atualizarFuncionario(formState) {
+        const resposta = await fetch(`${API_URL}/atualizarFuncionario`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const api = {
             body: JSON.stringify(formState),
         });
         if (!resposta.ok) {
-            throw new Error('Erro ao gravar o usuario');
+            throw new Error('Erro ao gravar o Funcionario');
         }
     }
 

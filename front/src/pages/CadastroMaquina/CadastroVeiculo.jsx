@@ -117,15 +117,15 @@ const CadastroVeiculos = () => {
     }
   };
 
-  const excluirVeiculo = async (idveiculos) => {
+  const excluirVeiculo = async (id) => {
     try {
-      console.log('Tentando excluir veiculo com ID:', idveiculos);
+      console.log('Tentando excluir veiculo com ID:', id);
 
-      await apiVeiculos.excluirVeiculo(idveiculos);
+      await apiVeiculos.excluirVeiculo(id);
 
 
 
-      const novaLista = veiculos.filter((veiculo) => veiculo.idveiculos !== idveiculos);
+      const novaLista = veiculos.filter((veiculo) => veiculo.id !== id);
 
       setVeiculos(novaLista);
 
@@ -135,9 +135,9 @@ const CadastroVeiculos = () => {
     }
   };
 
-  const editarVeiculo = async (idveiculos) => {
+  const editarVeiculo = async (id) => {
     try {
-      const veiculoSelecionado = await apiVeiculos.buscarVeiculoPorId(idveiculos);
+      const veiculoSelecionado = await apiVeiculos.buscarVeiculoPorId(id);
       setItemSelecionado(veiculoSelecionado);
       console.log('item:', veiculoSelecionado)
       setFormState(veiculoSelecionado.resultado[0]);
@@ -207,13 +207,13 @@ const CadastroVeiculos = () => {
               </thead>
               <tbody>
                 {veiculos.map((veiculo) => (
-                  <tr key={veiculo.idveiculos} style={{ backgroundColor: 'white' }}>
+                  <tr key={veiculo.id} style={{ backgroundColor: 'white' }}>
                     <td>{veiculo.nomeVeiculo}</td>
                     <td>{veiculo.placa}</td>
                     <td>{veiculo.renavam}</td>
                     <td>
-                      <button onClick={() => editarVeiculo(veiculo.idveiculos)} className="btn btn-warning me-1">Editar</button>
-                      <button onClick={() => excluirVeiculo(veiculo.idveiculos)} className="btn btn-danger">Excluir</button>
+                      <button onClick={() => editarVeiculo(veiculo.id)} className="btn btn-warning me-1">Editar</button>
+                      <button onClick={() => excluirVeiculo(veiculo.id)} className="btn btn-danger">Excluir</button>
                     </td>
                   </tr>
                 ))}

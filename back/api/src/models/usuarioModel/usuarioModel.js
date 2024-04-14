@@ -12,9 +12,9 @@ class UsuarioModel {
     });
   }
 
-  static buscarUsuarioPorId(idusuarios, callback) {
-    const query = 'SELECT * FROM usuarios where idusuarios = ?';
-    connection.query(query, [idusuarios], (err, results) => {
+  static buscarUsuarioPorId(id, callback) {
+    const query = 'SELECT * FROM usuarios where id = ?';
+    connection.query(query, [id], (err, results) => {
       if (err) {
         return callback(err, null);
       }
@@ -25,9 +25,9 @@ class UsuarioModel {
     })
   }
 
-  static atualizarUsuario(idusuarios, nome, email, senha, campo, callback) {
-    const query = 'UPDATE usuarios SET nome=?, email=?, senha=?, campo=? WHERE idusuarios=?';
-    connection.query(query, [nome, email, senha, campo, idusuarios], (err, results) => {
+  static atualizarUsuario(id, nome, email, senha, campo, callback) {
+    const query = 'UPDATE usuarios SET nome=?, email=?, senha=?, campo=? WHERE id=?';
+    connection.query(query, [nome, email, senha, campo, id], (err, results) => {
       if (err) {
         return callback(err, null);
       }
@@ -35,10 +35,10 @@ class UsuarioModel {
     });                                            
   }
 
-  static excluirUsuario(idusuarios, callback) {
-    const query = 'DELETE FROM usuarios WHERE idusuarios=?';
-    console.log(idusuarios)
-    connection.query(query, [idusuarios], (err, results) => {
+  static excluirUsuario(id, callback) {
+    const query = 'DELETE FROM usuarios WHERE id=?';
+    console.log(id)
+    connection.query(query, [id], (err, results) => {
       if (err) {
         return callback(err, null);
       }

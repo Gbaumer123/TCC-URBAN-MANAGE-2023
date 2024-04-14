@@ -12,9 +12,9 @@ class VeiculoModel {
     });
   }
 
-  static buscarVeiculoPorId(idveiculos, callback) {
-    const query = 'SELECT * FROM veiculos where idveiculos = ?';
-    connection.query(query, [idveiculos], (err, results) => {
+  static buscarVeiculoPorId(id, callback) {
+    const query = 'SELECT * FROM veiculos where id = ?';
+    connection.query(query, [id], (err, results) => {
       if (err) {
         return callback(err, null);
       }
@@ -25,9 +25,9 @@ class VeiculoModel {
     })
   }
 
-  static atualizarVeiculo(idveiculos,nomeVeiculo, placa, renavam, callback) {
-    const query = 'UPDATE veiculos SET nomeVeiculo=?, placa=?, renavam=? WHERE idveiculos=?';
-    connection.query(query, [nomeVeiculo, placa, renavam, idveiculos], (err, results) => {
+  static atualizarVeiculo(id,nomeVeiculo, placa, renavam, callback) {
+    const query = 'UPDATE veiculos SET nomeVeiculo=?, placa=?, renavam=? WHERE id=?';
+    connection.query(query, [nomeVeiculo, placa, renavam, id], (err, results) => {
       if (err) {
         return callback(err, null);
       }
@@ -35,10 +35,10 @@ class VeiculoModel {
     });                                            
   }
 
-  static excluirVeiculo(idveiculos, callback) {
-    const query = 'DELETE FROM veiculos WHERE idveiculos=?';
-    console.log(idveiculos)
-    connection.query(query, [idveiculos], (err, results) => {
+  static excluirVeiculo(id, callback) {
+    const query = 'DELETE FROM veiculos WHERE id=?';
+    console.log(id)
+    connection.query(query, [id], (err, results) => {
       if (err) {
         return callback(err, null);
       }

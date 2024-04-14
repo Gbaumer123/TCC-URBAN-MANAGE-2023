@@ -33,16 +33,16 @@ const api = {
         }
     },
 
-    async buscarVeiculoPorId(idveiculos) {
-        const resposta = await fetch(`${API_URL}/listarVeiculos/${idveiculos}`);
+    async buscarVeiculoPorId(id) {
+        const resposta = await fetch(`${API_URL}/listarVeiculos/${id}`);
         if (!resposta.ok) {
             throw new Error('Erro ao carregar os usuarios');
         }
         return resposta.json();
     },
 
-    async excluirVeiculo(idveiculos) {
-        const resposta = await fetch(`${API_URL}/excluirVeiculo/${idveiculos}`, {
+    async excluirVeiculo(id) {
+        const resposta = await fetch(`${API_URL}/excluirVeiculo/${id}`, {
             method: 'DELETE',
         });
         if (!resposta.ok) {

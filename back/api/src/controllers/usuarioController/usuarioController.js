@@ -19,9 +19,9 @@ const adicionaUsuario = (req, res) => {
 };
 
 const atualizarUsuario = (req, res) => {
-  const { idusuarios, nome, email, senha, campo } = req.body;
+  const { id, nome, email, senha, campo } = req.body;
 
-  UsuarioModel.atualizarUsuario(idusuarios, nome, email, senha, campo, (err, resultado) => {
+  UsuarioModel.atualizarUsuario(id, nome, email, senha, campo, (err, resultado) => {
     if (err) {
       console.error('Erro ao atualizar o usuario:', err);
       return res.status(500).json({ error: 'Erro ao atualizar o usuario' });

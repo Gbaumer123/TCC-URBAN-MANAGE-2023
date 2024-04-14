@@ -140,15 +140,15 @@ const CadastroUsuario = () => {
     }
   };
 
-  const excluirUsuario = async (idusuarios) => {
+  const excluirUsuario = async (id) => {
     try {
-      console.log('Tentando excluir usuário com ID:', idusuarios);
+      console.log('Tentando excluir usuário com ID:', id);
 
-      await apiUsuarios.excluirUsuario(idusuarios);
+      await apiUsuarios.excluirUsuario(id);
       
       
 
-      const novaLista = usuarios.filter((usuario) => usuario.idusuarios !== idusuarios);
+      const novaLista = usuarios.filter((usuario) => usuario.id !== id);
       
       setUsuarios(novaLista);
 
@@ -159,9 +159,9 @@ const CadastroUsuario = () => {
   };
  
 
-  const editarUsuario = async (idusuarios) => {
+  const editarUsuario = async (id) => {
     try {
-      const usuarioSelecionado = await apiUsuarios.buscarUsuarioPorId(idusuarios);
+      const usuarioSelecionado = await apiUsuarios.buscarUsuarioPorId(id);
       setItemSelecionado(usuarioSelecionado);
       console.log('item:', usuarioSelecionado)
       setFormState(usuarioSelecionado.resultado[0]);
@@ -281,11 +281,11 @@ const CadastroUsuario = () => {
                 </thead>
                 <tbody>
                 {usuarios.map((usuario) => (
-                <tr key={usuario.idusuarios} style={{ backgroundColor: 'white' }}>
+                <tr key={usuario.id} style={{ backgroundColor: 'white' }}>
                   <td>{usuario.nome}</td>
                   <td>
-                    <button onClick={() => editarUsuario(usuario.idusuarios)} className="btn btn-warning me-1">Editar</button>
-                    <button onClick={() => excluirUsuario(usuario.idusuarios)} className="btn btn-danger">Excluir</button>
+                    <button onClick={() => editarUsuario(usuario.id)} className="btn btn-warning me-1">Editar</button>
+                    <button onClick={() => excluirUsuario(usuario.id)} className="btn btn-danger">Excluir</button>
                       </td>
                     </tr>
                   ))}

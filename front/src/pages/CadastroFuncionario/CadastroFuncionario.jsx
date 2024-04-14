@@ -5,20 +5,19 @@ import Input from "../../components/Input";
 import Textomaior from '../../components/Textomaior';
 import Textomenor from '../../components/Textomenor';
 import { useNavigate } from 'react-router-dom';
+import apiFuncionarios from '../../services/apiFuncionarios/apiFuncionarios'
+import apiEquipes from '../../services/apiEquipes/apiEquipes'
 import "./CadastroFuncionario.css";
 
-
-
-
 const CadastroFuncionario = () => {
-
   const navigate = useNavigate();
-
+  const [equipes, setEquipes] = useState([]);
+  const [funcionarios, setFuncionarios] = useState([]);
+  const [itemSelecionado, setItemSelecionado] = useState(null);
+  const [equipeSelecionada, setEquipeSelecionada] = useState("");
   const [formState, setFormState] = useState({
     nomeFuncionario: "",
     cargo: "",
-    telefone: "",
-    dataNasc: "",
     equipe: "",
   });
 
@@ -27,35 +26,108 @@ const CadastroFuncionario = () => {
       ...formState,
       [chave]: evento.target.value,
     });
+    if (chave === "equipe") {
+      setEquipeSelecionada(evento.target.value);
+    }
+  };
+  
+  const adicionaFuncionario = async (evento) => {
+    evento.preventDefault();
+  
+    try {
+      await apiFuncionarios.adicionaFuncionario(formState);
+      alert('Funcionario salvo com sucesso');
+  
+      // Vincula o funcionário à equipe
+      await apiEquiFunc.vincularFuncionarioEquipe(funcionario.id, equipeSelecionada);
+  
+      await carregarFuncionarios();
+  
+      // Limpe o estado do formulário após o cadastro
+      setFormState({
+        nomeFuncionario: "",
+        cargo: "",
+        equipe: "",
+      });
+      setEquipeSelecionada(""); // Limpa o ID da equipe selecionada
+  
+    } catch (error) {
+      console.log(error);
+      alert('Funcionario já cadastrado, Tente Novamente!');
+    }
+  };
+  
+
+  const eventoSubmit = async (evento) => {
+    evento.preventDefault();
+    if (itemSelecionado) {
+      await atualizarFormulario(formState);
+    } else {
+      await adicionaFuncionario(evento);
+    }
   };
 
-  const cadastraFuncionario = async (evento) => {
-    evento.preventDefault();
-
-    // Limpe o estado do formulário após o cadastro
+  const atualizarFormulario = async (formState) => {
+    try {
+      await apiFuncionarios.atualizarFuncionario(formState);
+      alert('Funcionário editado com sucesso');
+    } catch (error) {
+      console.error('Erro ao editar o funcionário:', error.message);
+      alert('Erro ao editar o funcionário');
+    }
+    carregarFuncionarios();
     setFormState({
       nomeFuncionario: "",
       cargo: "",
-      telefone: "",
-      dataNasc: "",
       equipe: "",
     });
   };
 
-  const [veiculos, setVeiculos] = useState([]);
+  const carregarFuncionarios = async () => {
+    try {
+      const dados = await apiFuncionarios.listarFuncionarios();
+      setFuncionarios(dados);
+    } catch (error) {
+      console.error('Erro ao carregar os funcionários:', error.message);
+      console.log(error);
+    }
+  };
 
+  const excluirFuncionario = async (id) => {
+    try {
+      await apiFuncionarios.excluirFuncionario(id);
+      const novaLista = funcionarios.filter((funcionario) => funcionario.id !== id);
+      setFuncionarios(novaLista);
+    } catch (error) {
+      console.error('Erro ao excluir o funcionário:', error.message);
+      console.log('Resposta da API:', error.response);
+    }
+  };
 
+  const editarFuncionario = async (id) => {
+    try {
+      const funcionarioSelecionado = await apiFuncionarios.buscarFuncionarioPorId(id);
+      setItemSelecionado(funcionarioSelecionado);
+      setFormState(funcionarioSelecionado.resultado[0]);
+    } catch (error) {
+      console.error('Erro ao editar o funcionário:', error.message);
+    }
+  };
+
+  const listaEquipes = async () => {
+    try {
+      const dados = await apiEquipes.listarEquipes();
+      setEquipes(dados);
+    } catch (error) {
+      console.error('Erro ao carregar as equipes:', error.message);
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    // Verificar se existem máquinas salvas no localStorage
-    const veiculosSalvos = localStorage.getItem("veiculos");
-    if (veiculosSalvos) {
-      setVeiculos(JSON.parse(veiculosSalvos));
-    }
+    listaEquipes();
+    carregarFuncionarios();
   }, []);
-
-
-
 
   return (
     <>
@@ -63,7 +135,7 @@ const CadastroFuncionario = () => {
       <main>
         <section className='lateral3'>
           <Textomaior texto="ADICIONE UM NOVO FUNCIONÁRIO" corTexto="black" />
-          <form method="POST" className="formularioFunc">
+          <form method="POST" className="formularioFunc" onSubmit={eventoSubmit}>
             <Textomenor texto='Nome do funcionário:' />
             <Input
               tipo="name"
@@ -79,14 +151,19 @@ const CadastroFuncionario = () => {
               onChange={(evento) => mudaFormState(evento, "cargo")}
             />
             <Textomenor texto='Equipe:' />
-            <select class="select" value={formState.campo}
-              onChange={(evento) => mudaFormState(evento, "equipe")}>
-              <option selected >Equipes</option>
-              <option value="1">Rodoviário</option>
-              <option value="2">Obras</option>
+            <select
+              className="select"
+              value={formState.equipe}
+              onChange={(evento) => mudaFormState(evento, "equipe")}
+            >
+              <option value="" disabled>Selecione uma equipe</option>
+              {equipes.map((equipe) => (
+                <option key={equipe.id} value={equipe.id}>
+                  {equipe.nomeEquipe}
+                </option>
+              ))}
             </select>
-
-            <Botao texto="CADASTRAR" onClick={cadastraFuncionario} corTexto="white" />
+            <Botao type="submit" texto="CADASTRAR" />
           </form>
         </section>
 
@@ -103,26 +180,24 @@ const CadastroFuncionario = () => {
                 </tr>
               </thead>
               <tbody>
-                {veiculos.map((veiculo) => (
-                  <tr key={veiculo.id} style={{ backgroundColor: 'white' }}>
-                    <td>{veiculo.nomeVeiculo}</td>
-                    <td>{veiculo.placa}</td>
-                    <td>{veiculo.renavam}</td>
+                {funcionarios.map((funcionario) => (
+                  <tr key={funcionario.id} style={{ backgroundColor: 'white' }}>
+                    <td>{funcionario.nomeFuncionario}</td>
+                    <td>{funcionario.cargo}</td>
+                    <td>{funcionario.equipe}</td>
                     <td>
-                      <button className="btn btn-warning me-2">Editar</button>
-                      <button className="btn btn-danger">Excluir</button>
+                      <button onClick={() => editarFuncionario(funcionario.id)} className="btn btn-warning me-1">Editar</button>
+                      <button onClick={() => excluirFuncionario(funcionario.id)} className="btn btn-danger">Excluir</button>
                     </td>
                   </tr>
                 ))}
-
               </tbody>
             </table>
           </div>
-
         </section>
       </main>
     </>
   );
-
 }
+
 export default CadastroFuncionario;

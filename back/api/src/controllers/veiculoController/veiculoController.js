@@ -2,7 +2,7 @@
 const VeiculoModel = require('../../models/veiculoModel/veiculoModel');
 
 
-//rota para adicionar usuario
+//rota para adicionar veiculo
 const adicionaVeiculo = (req, res) => {
 
     const { nomeVeiculo, placa, renavam } = req.body
@@ -19,9 +19,9 @@ const adicionaVeiculo = (req, res) => {
 };
 
 const atualizarVeiculo = (req, res) => {
-    const { idveiculos, nomeVeiculo, placa, renavam } = req.body;
+    const { id, nomeVeiculo, placa, renavam } = req.body;
 
-    VeiculoModel.atualizarVeiculo(idveiculos, nomeVeiculo, placa, renavam, (err, resultado) => {
+    VeiculoModel.atualizarVeiculo(id, nomeVeiculo, placa, renavam, (err, resultado) => {
         if (err) {
             console.error('Erro ao atualizar o veiculo:', err);
             return res.status(500).json({ error: 'Erro ao atualizar o veiculo' });
