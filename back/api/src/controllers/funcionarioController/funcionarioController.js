@@ -1,6 +1,6 @@
 // FuncionarioController.js
 const FuncionarioModel = require('../../models/funcionarioModel/funcionarioModel');
-const EquiFuncModel = require('../../models/equipeFuncModel/equipeFuncModel');
+
 
 
 // Rota para adicionar Funcionario
@@ -8,14 +8,14 @@ const adicionaFuncionario = async (req, res) => {
   const { nomeFuncionario, cargo, equipe } = req.body;
 
   try {
-    const resultado = await FuncionarioModel.adicionaFuncionario(nomeFuncionario, cargo, equipe);
-    console.log('Funcionário cadastrado com sucesso');
-
-    // Vincular o novo funcionário à equipe
-    await EquiFuncModel.vincularFuncionarioEquipe(resultado.insertId, equipe);
-    console.log('Funcionário vinculado à equipe com sucesso');
-
-    res.status(201).json({ result: 'Funcionário salvo com sucesso', resultado });
+    FuncionarioModel.adicionaFuncionario(nomeFuncionario, cargo, equipe, (err, results) => {
+      if (err) {
+        console.error('Erro ao salvar o Funcionário:', err);
+        return res.status(500).json({ error: 'Erro ao salvar o Funcionário' });
+      }
+      console.log('Funcionário cadastrado com sucesso');
+      res.status(201).json({ result: 'Funcionário salvo com sucesso', resultado: results });
+    });
   } catch (error) {
     console.error('Erro ao salvar o Funcionário:', error);
     res.status(500).json({ error: 'Erro ao salvar o Funcionário' });
@@ -72,5 +72,17 @@ const buscarFuncionarioPorId = (req, res) => {
   });
 };
 
+const listarFuncionariosPorEquipe = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const funcionarios = await FuncionarioModel.listarFuncionariosPorEquipe(id);
+    res.json(funcionarios);
+  } catch (error) {
+    console.error('Erro ao listar funcionários por equipe:', error);
+    res.status(500).json({ error: 'Erro ao listar funcionários por equipe' });
+  }
+}
 
-module.exports = { adicionaFuncionario, atualizarFuncionario, excluirFuncionario, listarFuncionarios, buscarFuncionarioPorId };
+
+
+module.exports = { adicionaFuncionario, atualizarFuncionario, excluirFuncionario, listarFuncionarios, buscarFuncionarioPorId, listarFuncionariosPorEquipe };

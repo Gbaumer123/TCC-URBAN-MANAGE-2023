@@ -11,7 +11,7 @@ import "./CadastroFuncionario.css";
 
 const CadastroFuncionario = () => {
   const navigate = useNavigate();
-  const [equipes, setEquipes] = useState([]);
+  const [equipes, setEquipes] = useState({});
   const [funcionarios, setFuncionarios] = useState([]);
   const [itemSelecionado, setItemSelecionado] = useState(null);
   const [equipeSelecionada, setEquipeSelecionada] = useState("");
@@ -38,9 +38,7 @@ const CadastroFuncionario = () => {
       await apiFuncionarios.adicionaFuncionario(formState);
       alert('Funcionario salvo com sucesso');
   
-      // Vincula o funcionário à equipe
-      await apiEquiFunc.vincularFuncionarioEquipe(funcionario.id, equipeSelecionada);
-  
+    
       await carregarFuncionarios();
   
       // Limpe o estado do formulário após o cadastro
@@ -49,7 +47,6 @@ const CadastroFuncionario = () => {
         cargo: "",
         equipe: "",
       });
-      setEquipeSelecionada(""); // Limpa o ID da equipe selecionada
   
     } catch (error) {
       console.log(error);
@@ -117,13 +114,17 @@ const CadastroFuncionario = () => {
   const listaEquipes = async () => {
     try {
       const dados = await apiEquipes.listarEquipes();
-      setEquipes(dados);
+      const equipesObject = {};
+      dados.forEach((equipe) => {
+        equipesObject[equipe.id] = equipe.nomeEquipe;
+      });
+      setEquipes(equipesObject);
     } catch (error) {
       console.error('Erro ao carregar as equipes:', error.message);
       console.log(error);
     }
   };
-
+  
   useEffect(() => {
     listaEquipes();
     carregarFuncionarios();
@@ -157,9 +158,9 @@ const CadastroFuncionario = () => {
               onChange={(evento) => mudaFormState(evento, "equipe")}
             >
               <option value="" disabled>Selecione uma equipe</option>
-              {equipes.map((equipe) => (
-                <option key={equipe.id} value={equipe.id}>
-                  {equipe.nomeEquipe}
+              {Object.keys(equipes).map((id) => (
+                <option key={id} value={id}>
+                  {equipes[id]}
                 </option>
               ))}
             </select>
@@ -184,7 +185,7 @@ const CadastroFuncionario = () => {
                   <tr key={funcionario.id} style={{ backgroundColor: 'white' }}>
                     <td>{funcionario.nomeFuncionario}</td>
                     <td>{funcionario.cargo}</td>
-                    <td>{funcionario.equipe}</td>
+                    <td>{equipes[funcionario.equipe]}</td>
                     <td>
                       <button onClick={() => editarFuncionario(funcionario.id)} className="btn btn-warning me-1">Editar</button>
                       <button onClick={() => excluirFuncionario(funcionario.id)} className="btn btn-danger">Excluir</button>

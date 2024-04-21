@@ -1,7 +1,5 @@
 // EquipeController.js
-const EquipeModel = require('../../models/EquipeModel/EquipeModel');
-const EquiFuncModel = require('../../models/equipeFuncModel/equipeFuncModel');
-
+const EquipeModel = require('../../models/equipeModel/equipeModel');
 
 //rota para adicionar Equipe
 const adicionaEquipe = (req, res) => {
@@ -67,19 +65,7 @@ const buscarEquipePorId = (req, res) => {
   });
 };
 
-const vincularFuncionarioEquipe = (req, res) => {
-  const { idFuncionario, idEquipe } = req.body;
-
-  EquiFuncModel.vincularFuncionarioEquipe(idFuncionario, idEquipe)
-    .then(() => {
-      console.log('Funcionário vinculado à equipe com sucesso');
-      res.status(200).json({ message: 'Funcionário vinculado à equipe com sucesso' });
-    })
-    .catch((error) => {
-      console.error('Erro ao vincular funcionário à equipe:', error.message);
-      res.status(500).json({ error: 'Erro ao vincular funcionário à equipe' });
-    });
-};
 
 
-module.exports = { adicionaEquipe, atualizarEquipe, excluirEquipe, listarEquipes, buscarEquipePorId, vincularFuncionarioEquipe};
+
+module.exports = { adicionaEquipe, atualizarEquipe, excluirEquipe, listarEquipes, buscarEquipePorId};

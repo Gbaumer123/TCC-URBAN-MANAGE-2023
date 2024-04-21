@@ -61,18 +61,6 @@ const api = {
         if (!resposta.ok) {
             throw new Error('Erro ao gravar a Equipe');
         }
-    },
-    async vincularFuncionarioEquipe(idFuncionario, idEquipe) {
-        const resposta = await fetch(`${API_URL}/vincularFuncionarioEquipe`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ idFuncionario, idEquipe }),
-        });
-        if (!resposta.ok) {
-            throw new Error('Erro ao vincular funcionário à equipe');
-        }
     }
 }
 

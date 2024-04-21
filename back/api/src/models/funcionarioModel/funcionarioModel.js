@@ -2,21 +2,29 @@
 const { connection } = require('../../config');
 
 class FuncionarioModel {
-
-  static async adicionaFuncionario(nomeFuncionario, cargo, equipe) {
-    try {
-      const [result] = await connection.execute('INSERT INTO funcionarios (nomeFuncionario, cargo, equipe) VALUES (?, ?, ?)', [nomeFuncionario, cargo, equipe]);
-
-      if (result && result.insertId) {
-        return result.insertId;
-      } else {
-        throw new Error('Nenhum ID de funcionário retornado após a inserção.');
+  static adicionaFuncionario(nomeFuncionario, cargo, equipe, callback) {
+    const query = 'INSERT INTO funcionarios (nomeFuncionario, cargo, equipe) VALUES (?, ?, ?)';
+    connection.query(query, [nomeFuncionario, cargo, equipe], (err, results) => {
+      if (err) {
+        return callback(err, null);
       }
-    } catch (error) {
-      throw error;
-    }
+      callback(null, results);
+    });
   }
 
+  static buscarFuncionarioPorId(id, callback) {
+    const query = 'SELECT * FROM funcionarios where id = ?';
+    connection.query(query, [id], (err, results) => {
+      if (err) {
+        return callback(err, null);
+      }
+      if (results.length === 0) {
+        return callback(null, null);
+      }
+      callback(null, results);
+    })
+  }
+  
 
   static atualizarFuncionario(id, nomeFuncionario, cargo, equipe, callback) {
     const query = 'UPDATE funcionarios SET nomeFuncionario=?, cargo = ?, equipe = ? WHERE id=?';
@@ -49,7 +57,18 @@ class FuncionarioModel {
     });
   }
   
-
+  static async listarFuncionariosPorEquipe(id) {
+    return new Promise((resolve, reject) => {
+      const query = 'SELECT * FROM funcionarios WHERE equipe = ?';
+      connection.query(query, [id], (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      });
+    });
+  }
 
 }
 

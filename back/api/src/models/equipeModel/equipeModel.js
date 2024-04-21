@@ -56,15 +56,6 @@ class EquipeModel {
     });
   }
 
-  static vincularFuncionarioEquipe(idFuncionario, idEquipe, callback) {
-    const query = 'INSERT INTO equipes_funcionarios (idFuncionario, idEquipe) VALUES (?, ?)';
-    connection.query(query, [idFuncionario, idEquipe], (err, results) => {
-      if (err) {
-        return callback(err, null);
-      }
-      callback(null, results);
-    });
-  }
   
   }
 

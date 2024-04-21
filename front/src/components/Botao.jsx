@@ -8,7 +8,7 @@ function Botao({onClick,texto}) {
         borderRadius: '65px',
     }
     return (
-    <button className="btn btn-dark "  style={estiloBotao} onClick={onClick} >
+    <button className="btn btn-dark"  style={estiloBotao} onClick={onClick} >
         {texto}
     </button>
     )

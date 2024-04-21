@@ -61,7 +61,22 @@ const api = {
         if (!resposta.ok) {
             throw new Error('Erro ao gravar o Funcionario');
         }
+    },
+
+    async listarFuncionariosPorEquipe(id) {
+        try {
+            const resposta = await fetch(`${API_URL}/listarFuncionariosPorEquipe/${id}`);
+            if (!resposta.ok) {
+                const erroTexto = await resposta.text();
+                throw new Error(`Erro ao carregar os Funcionarios por equipe: ${erroTexto}`);
+            }
+            return resposta.json();
+        } catch (error) {
+            console.error('Erro durante a chamada à API:', error.message);
+            throw error;
+        }
     }
+    
 
 }
 
