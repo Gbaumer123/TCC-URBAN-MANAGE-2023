@@ -202,7 +202,7 @@ const CadastroUsuario = () => {
     <>
       <Cabecalho />
       <main className='main' >
-        <div className='fundo'>
+      
           <section className='lateral-a'>
             <Textomaior texto="CADASTRE UM NOVO USUÁRIO" />
             <form  className="form-cad">
@@ -253,7 +253,7 @@ const CadastroUsuario = () => {
 
               <Textomenor texto='Cargo:' />
               <article className='gap-input-cad'>
-                <select class="select" value={formState.campo}
+                <select class="selectUsua" value={formState.campo}
                   onChange={(evento) => mudaFormState(evento, "campo")}>
                   <option value="" disabled selected >Cargo</option>
                   <option value="Secretário">Secretário</option>
@@ -270,8 +270,9 @@ const CadastroUsuario = () => {
           </section>
 
           <section className='lateral-b'>
+           
+            <div className="table-responsive tabelasUsuarios">
             <h2 className="mb-4 text-center">Usuários Cadastrados</h2>
-            <div className="table-responsive-md">
               <table className="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -281,11 +282,11 @@ const CadastroUsuario = () => {
                 </thead>
                 <tbody>
                 {usuarios.map((usuario) => (
-                <tr key={usuario.id} style={{ backgroundColor: 'white' }}>
+                <tr key={usuario.id} className='mb-4 border-top border-dark shadow'>
                   <td>{usuario.nome}</td>
                   <td>
-                    <button onClick={() => editarUsuario(usuario.id)} className="btn btn-warning me-1">Editar</button>
-                    <button onClick={() => excluirUsuario(usuario.id)} className="btn btn-danger">Excluir</button>
+                    <button onClick={() => editarUsuario(usuario.id)} className="btn btn-secondary me-1">Editar</button>
+                    <button onClick={() => excluirUsuario(usuario.id)} className="btn btn-dark">Excluir</button>
                       </td>
                     </tr>
                   ))}
@@ -294,7 +295,7 @@ const CadastroUsuario = () => {
             </div>
           </section>
 
-        </div>
+       
       </main>
     </>
   );

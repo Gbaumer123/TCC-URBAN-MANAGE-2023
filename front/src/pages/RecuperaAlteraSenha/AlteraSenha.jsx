@@ -33,7 +33,7 @@ const AlteraSenha = () => {
         <body>
             <main className='fundoDesfocado'>
                 <div className='imagemLateral'></div>
-                <section className='lateral'>
+                <section className='lateralAlterarSenha'>
                     <form method='POST' className='formalt'>
 
                         <Textomenor texto='REDEFINA SUA SENHA' />
@@ -51,7 +51,7 @@ const AlteraSenha = () => {
                             />
                            <div className='form-check'> 
                                 <input type="checkbox" onChange={MostrarSenha} className='form-check-input' />
-                                <label >Mostrar senha</label>
+                                <label className='cor'>Mostrar senha</label>
                             </div>
 
                             <Input
@@ -63,7 +63,7 @@ const AlteraSenha = () => {
                             />
                             <div className='form-check'> 
                                 <input type="checkbox" onChange={MostrarSenha} className='form-check-input' />
-                                <label >Mostrar senha</label>
+                                <label className='cor' >Mostrar senha</label>
                             </div>
 
                             <Botao onClick={() => navigate('/')} texto="REDEFINIR" />

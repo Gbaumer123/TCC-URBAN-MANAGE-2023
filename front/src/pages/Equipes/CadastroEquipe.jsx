@@ -116,7 +116,7 @@ const CadastroEquipe = () => {
       <Cabecalho />
       <main>
         <section className='lateral5'>
-          <Textomaior texto='ADICIONE UM NOVA EQUIPE' corTexto='black' />
+          <Textomaior texto='ADICIONE UM NOVA EQUIPE' />
           <form method='POST' className='formularioEquipe'>
             <Textomenor texto='Nome da equipe:' />
             <Input
@@ -128,20 +128,25 @@ const CadastroEquipe = () => {
             <Botao type="submit" texto="CADASTRAR" onClick={eventoSubmit} />
           </form>
         </section>
-
+        
         <section className='lateral6'>
-          <div className='table-responsive'>
-            <h3 className='mb-4 text-center '>Equipes Cadastradas</h3>
+          <div className='table-responsive tabelasEquipes'>
+            <h3 className='mb-4 text-center'>Equipes Cadastradas</h3>
             {equipes.map((equipe) => (
-              <div key={equipe.id} className="mb-4">
+              <>
+              <div key={equipe.id} className="mb-4 border-top border-dark shadow ">
                 <h4 className='mb-3 text-center'>{equipe.nomeEquipe}</h4>
+                <div className="d-flex justify-content-center">
+                  <button onClick={() => editarEquipe(equipe.id)} className="btn btn-secondary me-1">Editar</button>
+                  <button onClick={() => excluirEquipe(equipe.id)} className="btn btn-dark">Excluir</button>
+                </div>
                 <table className='table table-bordered table-striped'>
                   <thead>
-                    <tr>
+                    <tr >
                       <th scope='col'>Nome do Funcionário</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody >
                     {equipe.funcionarios.map((funcionario) => (
                       <tr key={funcionario.id}>
                         <td>{funcionario.nomeFuncionario}</td>
@@ -149,11 +154,9 @@ const CadastroEquipe = () => {
                     ))}
                   </tbody>
                 </table>
-                <div className="d-flex justify-content-end">
-                  <button onClick={() => editarEquipe(equipe.id)} className="btn btn-warning me-1">Editar</button>
-                  <button onClick={() => excluirEquipe(equipe.id)} className="btn btn-danger">Excluir</button>
-                </div>
+                
               </div>
+              </>
             ))}
           </div>
         </section>

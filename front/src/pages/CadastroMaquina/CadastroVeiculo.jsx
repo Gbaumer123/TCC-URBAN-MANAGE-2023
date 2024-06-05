@@ -82,7 +82,7 @@ const CadastroVeiculos = () => {
     if (modoEdicao) {
       console.log(itemSelecionado)
       await atualizarFormulario(formState)
-      setModoEdicao(false);
+      setModoEdicao(true);
     } else {
       await cadastraVeiculo(evento)
     }
@@ -189,12 +189,13 @@ const CadastroVeiculos = () => {
             />
 
 
-            <Botao onClick={eventoSubmit} texto={modoEdicao ? "SALVAR" : "CADASTRAR"} corTexto="white" />          </form>
+            <Botao onClick={eventoSubmit} texto={modoEdicao ? "SALVAR" : "CADASTRAR"} corTexto="white" />
+          </form>
 
         </section>
 
         <section className='lateral2'>
-          <div className="table-responsive">
+          <div className="table-responsive tabelasVeiculos">
             <h3 className="mb-4 text-center ">Veículos Cadastrados</h3>
             <table className="table table-bordered table-striped">
               <thead>
@@ -207,13 +208,13 @@ const CadastroVeiculos = () => {
               </thead>
               <tbody>
                 {veiculos.map((veiculo) => (
-                  <tr key={veiculo.id} style={{ backgroundColor: 'white' }}>
+                  <tr key={veiculo.id} className="mb-4 border-top border-dark shadow ">
                     <td>{veiculo.nomeVeiculo}</td>
                     <td>{veiculo.placa}</td>
                     <td>{veiculo.renavam}</td>
                     <td>
-                      <button onClick={() => editarVeiculo(veiculo.id)} className="btn btn-warning me-1">Editar</button>
-                      <button onClick={() => excluirVeiculo(veiculo.id)} className="btn btn-danger">Excluir</button>
+                      <button onClick={() => editarVeiculo(veiculo.id)} className="btn btn-secondary me-1">Editar</button>
+                      <button onClick={() => excluirVeiculo(veiculo.id)} className="btn btn-dark">Excluir</button>
                     </td>
                   </tr>
                 ))}

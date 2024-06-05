@@ -4,11 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 function Botao({onClick,texto}) {
 
     const estiloBotao = {
-        color: '#FFED02',
+        color: 'black',
         borderRadius: '65px',
     }
     return (
-    <button className="btn btn-dark"  style={estiloBotao} onClick={onClick} >
+    <button className="btn btn-light"  style={estiloBotao} onClick={onClick} >
         {texto}
     </button>
     )

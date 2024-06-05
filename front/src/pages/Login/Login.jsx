@@ -67,7 +67,7 @@ function Login() {
         < main className='fundoDesfocado'>
           <div className='imagemLateral'></div>
 
-          <section className='lateral'>
+          <section className='lateralLogin'>
             <Textomaior texto='FAÇA LOGIN' />
             <form method='POST' className='form'>
 
@@ -93,7 +93,7 @@ function Login() {
 
               <div className='form-check'>
                 <input type="checkbox" onChange={MostrarSenha} className='form-check-input' />
-                <label >Mostrar senha</label>
+                <label className='cor'>Mostrar senha</label>
               </div>
 
               <article className='gap-input'>

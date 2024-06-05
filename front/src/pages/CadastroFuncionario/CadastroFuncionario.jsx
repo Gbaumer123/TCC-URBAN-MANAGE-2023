@@ -11,10 +11,17 @@ import "./CadastroFuncionario.css";
 
 const CadastroFuncionario = () => {
   const navigate = useNavigate();
+
   const [equipes, setEquipes] = useState({});
+  
   const [funcionarios, setFuncionarios] = useState([]);
+  
   const [itemSelecionado, setItemSelecionado] = useState(null);
+  
   const [equipeSelecionada, setEquipeSelecionada] = useState("");
+  
+  const [modoEdicao, setModoEdicao] = useState(false);
+
   const [formState, setFormState] = useState({
     nomeFuncionario: "",
     cargo: "",
@@ -57,10 +64,12 @@ const CadastroFuncionario = () => {
 
   const eventoSubmit = async (evento) => {
     evento.preventDefault();
-    if (itemSelecionado) {
-      await atualizarFormulario(formState);
+    if (modoEdicao) {
+      console.log(itemSelecionado)
+      await atualizarFormulario(formState)
+      setModoEdicao(true);
     } else {
-      await adicionaFuncionario(evento);
+      await adicionaFuncionario(evento)
     }
   };
 
@@ -106,6 +115,9 @@ const CadastroFuncionario = () => {
       const funcionarioSelecionado = await apiFuncionarios.buscarFuncionarioPorId(id);
       setItemSelecionado(funcionarioSelecionado);
       setFormState(funcionarioSelecionado.resultado[0]);
+
+      
+      setModoEdicao(true);
     } catch (error) {
       console.error('Erro ao editar o funcionário:', error.message);
     }
@@ -115,11 +127,14 @@ const CadastroFuncionario = () => {
     try {
       const dados = await apiEquipes.listarEquipes();
       const equipesObject = {};
+
       dados.forEach((equipe) => {
         equipesObject[equipe.id] = equipe.nomeEquipe;
       });
+
       setEquipes(equipesObject);
-    } catch (error) {
+    }
+     catch (error) {
       console.error('Erro ao carregar as equipes:', error.message);
       console.log(error);
     }
@@ -153,7 +168,7 @@ const CadastroFuncionario = () => {
             />
             <Textomenor texto='Equipe:' />
             <select
-              className="select"
+              className="selectFuncio"
               value={formState.equipe}
               onChange={(evento) => mudaFormState(evento, "equipe")}
             >
@@ -164,12 +179,12 @@ const CadastroFuncionario = () => {
                 </option>
               ))}
             </select>
-            <Botao type="submit" texto="CADASTRAR" />
+            <Botao onClick={eventoSubmit} texto={modoEdicao ? "SALVAR" : "CADASTRAR"} corTexto="white" />
           </form>
         </section>
 
         <section className='lateral4'>
-          <div className="table-responsive">
+          <div className="table-responsive tabelasFuncionarios">
             <h3 className="mb-4 text-center ">Funcionários Cadastrados</h3>
             <table className="table table-bordered table-striped">
               <thead>
@@ -182,13 +197,13 @@ const CadastroFuncionario = () => {
               </thead>
               <tbody>
                 {funcionarios.map((funcionario) => (
-                  <tr key={funcionario.id} style={{ backgroundColor: 'white' }}>
+                  <tr key={funcionario.id} className="mb-4 border-top border-dark shadow ">
                     <td>{funcionario.nomeFuncionario}</td>
                     <td>{funcionario.cargo}</td>
                     <td>{equipes[funcionario.equipe]}</td>
                     <td>
-                      <button onClick={() => editarFuncionario(funcionario.id)} className="btn btn-warning me-1">Editar</button>
-                      <button onClick={() => excluirFuncionario(funcionario.id)} className="btn btn-danger">Excluir</button>
+                      <button onClick={() => editarFuncionario(funcionario.id)} className="btn btn-secondary me-1">Editar</button>
+                      <button onClick={() => excluirFuncionario(funcionario.id)} className="btn btn-dark">Excluir</button>
                     </td>
                   </tr>
                 ))}

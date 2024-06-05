@@ -29,7 +29,7 @@ const RecuperaSenha = () => {
     <body >
       <main className='fundoDesfocado'>
         <div className='imagemLateral'></div>
-        <section className='lateral'>
+        <section className='lateralRecuperaSenha'>
           <Textomaior texto={'RECUPERE SUA CONTA'}></Textomaior>
           <form method='POST' className='formalt'>
           <article className='gap-input-re'>

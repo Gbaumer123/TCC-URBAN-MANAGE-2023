@@ -6,8 +6,8 @@
 
 
 .cssCardBody {
-  background-color: #424649;
-  color: #FFED0E;
+  background-color: #212529;
+  color: white;
   width: 100%;
 }
 
@@ -19,16 +19,16 @@
 }
 
 .cssCardText {
-  color: rgb(255, 255, 255);
+  color:white;
   font-size: 2.8vw;
   font-size: 2.8vh;
   text-align: justify;
 }
 
 .cssModalBody {
-  background-color: #424649;
-  color: #FFED0E;
-  padding: 2px;
+  background-color: #212529;
+  color: white;
+  padding: 30px;
   border-radius: 10px;
 }
 
@@ -56,8 +56,6 @@
   }
 
   .cssCardBody {
-    background-color: #424649;
-    color: #FFED0E;
     width: 100%;
   }
 

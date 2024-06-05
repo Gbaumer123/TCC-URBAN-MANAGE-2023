@@ -31,7 +31,7 @@ const RecuperaCodigo = () => {
     <body>
       <main className='fundoDesfocado'>
         <div className='imagemLateral'></div>
-        <section className='lateral'>
+        <section className='lateralRecuperaCodigo'>
           <form method='POST' className='formalt'>
             <article className='gap-input'>
               <Textomenor texto='Digite o código enviado ao seu email:' />

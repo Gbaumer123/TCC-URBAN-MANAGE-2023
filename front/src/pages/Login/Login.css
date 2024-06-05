@@ -24,13 +24,14 @@ body {
   border-radius: 0%;
 }
 
-.lateral {
+.lateralLogin {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 50%;
-  background-color: #E7E8EA;
+  height: 100%;
+  background-color: #3A3A3B;
   border-radius: 0 8% 8% 0;
 }
 
@@ -58,6 +59,9 @@ button:active {
   justify-content: center;
 }
 
+.cor{
+ color: white;
+}
 
 .gap-input-lo {
   display: flex;
@@ -87,7 +91,7 @@ button:active {
     flex-direction: column;
   }
 
-  .lateral {
+  .lateralLogin {
 
     width: 100%;
     border-radius: 0;
