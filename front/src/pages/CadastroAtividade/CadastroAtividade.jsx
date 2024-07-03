@@ -341,8 +341,8 @@ function CadastroAtividade() {
                                             <td>{atividade.equipe}</td>
 
                                             <td>
-                                                <button onClick={() => editarAtividade(atividade.id)} className="btn btn-secondary me-1">Editar</button>
-                                                <button onClick={() => excluirAtividade(atividade.id)} className="btn btn-dark">Excluir</button>
+                                                <button onClick={() => editarAtividade(atividade.id)} className="btn btn-dark me-1">Editar</button>
+                                                <button onClick={() => excluirAtividade(atividade.id)} className="btn btn-danger">Excluir</button>
                                             </td>
                                         </tr>
 

@@ -2,21 +2,31 @@ import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AtividadeTV from '../../components/AtividadeTV';
 import { useNavigate } from 'react-router-dom';
-
+import apiAtividades from '../../services/apiAtividades/apiAtividades';
+import "./MostraAtividadesTV.css";
 
 
 const MostraAtividadeTv = () => {
-
+    const navigate = useNavigate();
 
     const [atividadesPendentes, setAtividadesPendentes] = useState([]);
+    const [atividadesEmAndamento, setAtividadesEmAndamento] = useState([]);
+    const [atividadesConcluidas, setAtividadesConcluidas] = useState([]);
 
     useEffect(() => {
-        const atividadesSalvas = JSON.parse(localStorage.getItem("atividades")) || [];
-        const atividadesPendentes = atividadesSalvas.filter(atividade => !atividade.concluida);
-        setAtividadesPendentes(atividadesPendentes);
+        carregarAtividades();
     }, []);
 
-    const navigate = useNavigate();
+    const carregarAtividades = async () => {
+        try {
+            const dados = await apiAtividades.listarAtividades();
+            setAtividadesPendentes(dados.filter(atividade => atividade.status === "pendente"));
+            setAtividadesEmAndamento(dados.filter(atividade => atividade.status === "em andamento"));
+            setAtividadesConcluidas(dados.filter(atividade => atividade.status === "concluida"));
+        } catch (error) {
+            console.error('Erro ao carregar as atividades:', error.message);
+        }
+    };
 
     return (
         <>
@@ -38,7 +48,7 @@ const MostraAtividadeTv = () => {
                             <div className="card-body">
                                 <h2 className="card-title">Atividades em Andamento</h2>
                             </div>
-                            <AtividadeTV atividades={atividadesPendentes} />
+                 
                         </div>
                     </div>
 
@@ -49,17 +59,17 @@ const MostraAtividadeTv = () => {
                                 <h2 className="card-title">Atividades Concluídas</h2>
                             </div>
 
-                            <AtividadeTV atividades={atividadesPendentes} />
+            
                         </div>
                     </div>
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" onClick={() => navigate('/home')}>Fechar </button>
                 </div>
-        </div>
-      
-    </>
-  );
+            </div>
+
+        </>
+    );
 };
 
 

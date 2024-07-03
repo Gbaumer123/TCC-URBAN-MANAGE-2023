@@ -285,8 +285,8 @@ const CadastroUsuario = () => {
                 <tr key={usuario.id} className='mb-4 border-top border-dark shadow'>
                   <td>{usuario.nome}</td>
                   <td>
-                    <button onClick={() => editarUsuario(usuario.id)} className="btn btn-secondary me-1">Editar</button>
-                    <button onClick={() => excluirUsuario(usuario.id)} className="btn btn-dark">Excluir</button>
+                    <button onClick={() => editarUsuario(usuario.id)} className="btn btn-dark me-1">Editar</button>
+                    <button onClick={() => excluirUsuario(usuario.id)} className="btn btn-danger">Excluir</button>
                       </td>
                     </tr>
                   ))}

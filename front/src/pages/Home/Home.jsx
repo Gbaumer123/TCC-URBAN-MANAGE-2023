@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Cabecalho from '../../components/Header/Cabecalho';
 import Atividade from '../../components/Atividade';
 import apiAtividades from '../../services/apiAtividades/apiAtividades';
+import "./Home.css";
 
 const Home = () => {
   
@@ -28,11 +29,11 @@ const Home = () => {
   return (
     <>
       <Cabecalho />
-      <div className="container-fluid mt-2 text-center">
+      <div className="container-fluid  text-center  ">
         <div className="row">
           {/* Coluna 1: Atividades Pendentes */}
           <div className="col-lg-4 mb-4">
-            <div className="card" style={{ backgroundColor: "#E7E8EA" }}>
+            <div className="card" style={{ backgroundColor: "white" }}>
               <div className="card-body">
                 <h2 className="card-title">Atividades Pendentes</h2>
                 <Atividade atividades={atividadesPendentes} />
@@ -61,6 +62,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      
     </>
   );
 };

@@ -137,8 +137,8 @@ const CadastroEquipe = () => {
               <div key={equipe.id} className="mb-4 border-top border-dark shadow ">
                 <h4 className='mb-3 text-center'>{equipe.nomeEquipe}</h4>
                 <div className="d-flex justify-content-center">
-                  <button onClick={() => editarEquipe(equipe.id)} className="btn btn-secondary me-1">Editar</button>
-                  <button onClick={() => excluirEquipe(equipe.id)} className="btn btn-dark">Excluir</button>
+                  <button onClick={() => editarEquipe(equipe.id)} className="btn btn-dark me-1">Editar</button>
+                  <button onClick={() => excluirEquipe(equipe.id)} className="btn btn-danger">Excluir</button>
                 </div>
                 <table className='table table-bordered table-striped'>
                   <thead>

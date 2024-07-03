@@ -213,8 +213,8 @@ const CadastroVeiculos = () => {
                     <td>{veiculo.placa}</td>
                     <td>{veiculo.renavam}</td>
                     <td>
-                      <button onClick={() => editarVeiculo(veiculo.id)} className="btn btn-secondary me-1">Editar</button>
-                      <button onClick={() => excluirVeiculo(veiculo.id)} className="btn btn-dark">Excluir</button>
+                      <button onClick={() => editarVeiculo(veiculo.id)} className="btn btn-dark me-1">Editar</button>
+                      <button onClick={() => excluirVeiculo(veiculo.id)} className="btn btn-danger">Excluir</button>
                     </td>
                   </tr>
                 ))}

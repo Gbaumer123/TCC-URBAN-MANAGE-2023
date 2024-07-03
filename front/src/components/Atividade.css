@@ -16,6 +16,7 @@
   text-transform: uppercase;
   font-size: 5vw;
   font-size: 5vh;
+  color:yellow;
 }
 
 .cssCardText {
@@ -36,8 +37,10 @@
   text-align: center;
   text-transform: uppercase;
   font-size: 4.5vw;
-  font-size: 4.5vh
+  font-size: 4.5vh;
+  color:yellow;
 }
+
 
 .cssModalText {
   color: rgb(255, 255, 255);
@@ -82,6 +85,7 @@
 
   .cssModalTitle {
     font-size: 6.5vw;
+    color:yellow;
   }
 
 

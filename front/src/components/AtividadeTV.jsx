@@ -1,86 +1,123 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import './Atividade.css'
 import { useNavigate } from 'react-router-dom';
 import Modal from "./Modal";
+import apiAtividades from '..//services/apiAtividades/apiAtividades';
 
-function AtividadeTV({ atividades }) {
+function AtividadeTV() {
 
   const navigate = useNavigate()
 
-  const [dados, setDados] = useState(false);
-  const [descricaoExibicao, setDescricaoExibicao] = useState('');
+  const [atividades, setAtividades] = useState([]);
+  const [modalAberto, setModalAberto] = useState(false);
+  const [atividadeSelecionada, setAtividadeSelecionada] = useState(null);
 
 
-  const abreAtividade = () => {
-    setDados(true);
-    setDescricaoExibicao('');
+  const abreAtividade = (atividade) => {
+    setAtividadeSelecionada(atividade); // Define a atividade selecionada
+    setModalAberto(true); // Abre o modal
   }
 
-  const fechaAtividade = () => setDados(false);
+  const fechaAtividade = () => {
+    setModalAberto(false);
+    setAtividadeSelecionada(null); // Limpa a atividade selecionada ao fechar o modal
+  }
+
+  useEffect(() => {
+    carregarAtividades();
+  }, []);
+
+  const carregarAtividades = async () => {
+    try {
+      const dados = await apiAtividades.listarAtividades();
+      setAtividades(dados);
+    } catch (error) {
+      console.error('Erro ao carregar atividades:', error.message);
+    }
+  };
 
 
-
-
-//descrição so pode ter 600 caracteres
-
+  const excluirAtividade = async (id) => {
+    try {
+      await apiAtividades.excluirAtividade(id);
+      const novaLista = atividades.filter((atividade) => atividade.id !== id);
+      setAtividades(novaLista);
+      fechaAtividade();
+    } catch (error) {
+      console.error('Erro ao excluir a atividade:', error.message);
+    }
+  };
 
   return (
     <>
-
       <table className="table">
-        <thead>
-        </thead>
         <tbody>
           {atividades.map(atividade => (
             <tr key={atividade.id}>
               <td>
-                <div className="card cssCard">
+                <div className="card cssCard" onClick={() => abreAtividade(atividade)}>
                   <div className="card-body cssCardBody">
-                    <h1 className="card-title  cssCardTitle">{atividade.titulo}</h1>
-                    <h7 className="card-text cssCardText">
-                    {descricaoExibicao ||
-                        (atividade.descricao.length > 100
-                          ? `${atividade.descricao.slice(0, 100)}...` //SLICE FAZ A COPIA DOS 100 PRIMEIROS CARACTERES
-                          : atividade.descricao)}
-                    </h7>
-
+                    <h1 className="card-title cssCardTitle">{atividade.titulo}</h1>
+                    <p className="card-text cssCardText">
+                      {atividade.descricao.length > 100
+                        ? `${atividade.descricao.slice(0, 300)}...` // Mostra os primeiros 100 caracteres
+                        : atividade.descricao}
+                    </p>
                   </div>
-                  <button className="btn btn-info fw-bold " onClick={abreAtividade}>VISUALIZAR ATIVIDADE</button>
                 </div>
               </td>
             </tr>
           ))}
         </tbody>
-
       </table>
+
+      {modalAberto && atividadeSelecionada && (
+        <Modal
+          dados={modalAberto}
+          fecha={fechaAtividade}
+          titulo="SUA ATIVIDADE:"
+          conteudo={
+            <div className="cssModalBody">
+              <h1 className="cssModalTitle">{atividadeSelecionada.titulo}</h1>
+              <p>EQUIPE: {atividadeSelecionada.equipe}</p>
+              <p>FUNCIONÁRIOS: {atividadeSelecionada.funcionarios}</p>
+              <p>VEÍCULOS: {atividadeSelecionada.veiculo}</p>
+              <p>DESCRIÇÃO: <div dangerouslySetInnerHTML={{ __html: atividadeSelecionada.descricao }} /></p>
+              <div className="d-flex justify-content-center cssButton">
+                <button className="btn btn-info me-3">Iniciar Atividade</button>
+                <button className="btn btn-warning me-3">Editar Atividade</button>
+                <button className="btn btn-danger" onClick={() => excluirAtividade(atividadeSelecionada.id)}>Excluir Atividade</button>
+
+              </div>
+            </div>
+          }
+        />
+      )}
       
 
-      <Modal
-        dados={dados}
-        fecha={fechaAtividade}
-        titulo="SUA ATIVIDADE:"
-        conteudo={
-       
-            <div className="row justify-content-center">
-              {atividades.map(atividade => (
-                <div key={atividade.id} className="col-lg-12">
-                  <div className="cssModalBody">
-                    <h1 className="cssModalTitle">{atividade.titulo}</h1>
+      {modalAberto && atividadeSelecionada && (
+        <Modal
+          dados={modalAberto}
+          fecha={fechaAtividade}
+          titulo="SUA ATIVIDADE:"
+          conteudo={
+            <div className="cssModalBody">
+              <h1 className="cssModalTitle">{atividadeSelecionada.titulo}</h1>
+              <p>EQUIPE: {atividadeSelecionada.equipe}</p>
+              <p>FUNCIONÁRIOS: {atividadeSelecionada.funcionarios}</p>
+              <p>VEÍCULOS: {atividadeSelecionada.veiculo}</p>
+              <p>DESCRIÇÃO: <div dangerouslySetInnerHTML={{ __html: atividadeSelecionada.descricao }} /></p>
+              <div className="d-flex justify-content-center cssButton">
+                <button className="btn btn-success me-3">Iniciar Atividade</button>
+                <button className="btn btn-secondary me-3">Editar Atividade</button>
+                <button className="btn btn-danger" onClick={() => excluirAtividade(atividadeSelecionada.id)}>Excluir Atividade</button>
 
-                    <div className="cssModalText">
-                      <p >FUNCIONÁRIOS: {atividade.funcionario}</p>
-                      <p >VEÍCULOS: {atividade.veiculo}</p>
-                      <p >EQUIPE: {atividade.equipe}</p>
-                      <p >DESCRIÇÃO: {atividade.descricao}</p> 
-                    
-                    </div>
-                  </div>
-                </div>
-              ))}
+              </div>
             </div>
-        
-        }
-      />
+          }
+        />
+      )}
+      
 
     </>
 

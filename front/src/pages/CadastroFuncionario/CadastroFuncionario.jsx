@@ -202,8 +202,8 @@ const CadastroFuncionario = () => {
                     <td>{funcionario.cargo}</td>
                     <td>{equipes[funcionario.equipe]}</td>
                     <td>
-                      <button onClick={() => editarFuncionario(funcionario.id)} className="btn btn-secondary me-1">Editar</button>
-                      <button onClick={() => excluirFuncionario(funcionario.id)} className="btn btn-dark">Excluir</button>
+                      <button onClick={() => editarFuncionario(funcionario.id)} className="btn btn-dark me-1">Editar</button>
+                      <button onClick={() => excluirFuncionario(funcionario.id)} className="btn btn-danger">Excluir</button>
                     </td>
                   </tr>
                 ))}

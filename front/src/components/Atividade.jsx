@@ -53,16 +53,15 @@ function Atividade() {
           {atividades.map(atividade => (
             <tr key={atividade.id}>
               <td>
-                <div className="card cssCard">
+                <div className="card cssCard" onClick={() => abreAtividade(atividade)}>
                   <div className="card-body cssCardBody">
                     <h1 className="card-title cssCardTitle">{atividade.titulo}</h1>
                     <p className="card-text cssCardText">
                       {atividade.descricao.length > 100
-                        ? `${atividade.descricao.slice(0, 100)}...` // Mostra os primeiros 100 caracteres
+                        ? `${atividade.descricao.slice(0, 300)}...` // Mostra os primeiros 100 caracteres
                         : atividade.descricao}
                     </p>
                   </div>
-                  <button className="btn btn-info fw-bold" onClick={() => abreAtividade(atividade)}>VISUALIZAR ATIVIDADE</button>
                 </div>
               </td>
             </tr>
@@ -83,10 +82,9 @@ function Atividade() {
               <p>VEÍCULOS: {atividadeSelecionada.veiculo}</p>
               <p>DESCRIÇÃO: <div dangerouslySetInnerHTML={{ __html: atividadeSelecionada.descricao }} /></p>
               <div className="d-flex justify-content-center cssButton">
-                <button className="btn btn-info me-3">Iniciar Atividade</button>
-                <button className="btn btn-warning me-3">Editar Atividade</button>
+              <button className="btn btn-success me-3">Iniciar Atividade</button>
+                <button className="btn btn-secondary me-3">Editar Atividade</button>
                 <button className="btn btn-danger" onClick={() => excluirAtividade(atividadeSelecionada.id)}>Excluir Atividade</button>
-
               </div>
             </div>
           }
